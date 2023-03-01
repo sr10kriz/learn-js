@@ -1722,3 +1722,41 @@ testObjOne.showStage();
 
 // let numbersArr = [1,2,3,4,5];
 // Array.isArray(numbersArr) // to checkj whether its array or not.
+
+var qwer = [
+  {
+    id: 1,
+    title: "test_1",
+    titleArr: [
+      {
+        titleArr_id: 101,
+        titleArr_name: "nested_test_1",
+      },
+      {
+        titleArr_id: 102,
+        titleArr_name: "nested_test_2",
+      },
+    ],
+  },
+  {
+    id: 2,
+    title: "test_2",
+    titleArr: [
+      {
+        titleArr_id: 103,
+        titleArr_name: "nested_test_3",
+      },
+      {
+        titleArr_id: 104,
+        titleArr_name: "nested_test_4",
+      },
+    ],
+  },
+];
+
+for (const index of qwer) {
+  // console.log(index);
+  index.titleArr.map((e) => {
+    console.log(e);
+  });
+}
