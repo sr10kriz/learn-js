@@ -155,7 +155,7 @@ console.log("Application Refused", applicationRefused);
 let userColor = undefined;
 let defaultColor = "Black";
 let currentColor = userColor || defaultColor;
-console.log(currentColor); // falsy statement
+console.log("currentColor", currentColor); // falsy statement
 
 let userCColor = "Gold";
 let defaultCColor = "Black";
@@ -293,8 +293,8 @@ for (let key in testAgain) {
 let colors = ["gold", "white", "black"];
 for (let index in colors) {
   // the index will store the index value of each element in an array
-  //console.log(index);
-  console.log(index, colors[index]);
+  console.log("for of**", index);
+  console.log("for of*", index, colors[index]);
 }
 
 // for of loop || mainly used to iterate elements or items in an array
@@ -320,7 +320,7 @@ function myFunction(speed) {
 // get count of truthy value as results
 const myArray = [undefined, null, "", 0, false, 1, 2, 5, true];
 
-console.log(getTruthyCount(myArray));
+console.log("getTruthyCount", getTruthyCount(myArray));
 
 function getTruthyCount(myArray) {
   let count = 0;
@@ -398,7 +398,7 @@ function getStar(stars) {
 getPrime(10);
 function getPrime(primes) {
   for (let number = 2; number <= primes; number++)
-    if (isPrime(number)) console.log(number);
+    if (isPrime(number)) console.log("primenumber*", number);
 }
 
 function isPrime(number) {
@@ -632,7 +632,7 @@ function callValue(_nums) {
   nums++;
 }
 callValue(nums);
-console.log(nums); // we get 10 as the output coz ,this is a Primitive
+console.log("nums*", nums); // we get 10 as the output coz ,this is a Primitive
 
 // eg: In Non-Primitives / Reference types / Objects
 
@@ -643,7 +643,7 @@ function callValue(numss) {
   numss.value++;
 }
 callValue(numss);
-console.log(numss); // here we get the output => {value: 11}
+console.log("numss*", numss); // here we get the output => {value: 11}
 
 // NExt enumurate the properties of an object in -> for in and -> for of loop
 
@@ -659,7 +659,7 @@ let circle2 = {
 };
 
 for (let key in circle2) {
-  console.log(key, circle2[key]); // this for iterate properties of an object
+  console.log("enumerate properties*", key, circle2[key]); // this for iterate properties of an object
 }
 
 // for(let key of circle2) {
@@ -1655,7 +1655,8 @@ const profileMakeUpOne = {
 try {
   profileMakeUpOne.fullName = "";
 } catch (e) {
-  alert(e);
+  // alert(e);
+  console.log("eeeeee*", e);
 }
 
 console.log(profileMakeUpOne);
