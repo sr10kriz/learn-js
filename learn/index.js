@@ -1,21 +1,133 @@
-//console.log('Welcome to JavaScript');
-//console.log('Make Webpage more interactive');
+/* 1. Basics in Js */
+/* Used to create more dynamic and user interactive websites */
 
-// start Js
-let name = "Welcome to JavaScript!";
-console.log(name);
+/* # why we use js ?
+    - adds interactivity to the websites
+    - enables dynamic contents without refreshing the browser/window
+    - used for client side scripting, now server-side too
+    - works well with html & css to build an fully functional app
+*/
 
-// variable declaration
+/* # advantages of js */
+/*
+  - real-time interactions without server loads
+  - cross-browser support
+  - fast execution
+  - easy to learn and implement
+  - supports both client side as well as server side  
+*/
+
+// console.log('Welcome to JavaScript');
+// console.log('Make Webpage more interactive');
+
+/* # variable declaration 
+  - variables are container to store data values, like a labeled box with names where data is kept and retrieve later
+  - to declare a variable, in js we use keywords var, let, const
+  # var - function scoped, can be redeclared and updated, hoisted (move to top while execution, initialized as undefined), mutable values
+  # let - block scoped, can be updated but cannot be re-declared in the same scope, hoisted (not initialized == TDZ), mutable values
+  # const - block scoped, cannot be updated or re-declared, hoisted (not initialized == TDZ), immutable values
+*/
+
+/* # use var */
+var needPeace = "Noise";
+var needPeace = "Peace"; /* redeclared and updated */
+console.log("needPeace", needPeace);
+
+/* # use let */
+let nameJs = "Welcome to JavaScript!";
+nameJs = "Peace begins expectations ends!"; /* updated */
+// let nameJs = "check redeclaration"; /* here we cannot re-declare */
+console.log("nameJs", nameJs);
 let firstName = "Josh";
 let lastName = "Portialla";
 console.log(firstName + " " + lastName);
 
-// declare variable as a const
-const interestRate = 0.4; // if we declare const as a variable type, then the value can't be changed
-//interestRate = 1.0;
-console.log(interestRate);
+/* # use const */
+const interestRate = 0.4; /*  if we declare const as a variable type, then the value can't be changed */
+// interestRate = 1.0; /* if we do we got - Type Error: Assignment to constant variable. */
+console.log("interestRate", interestRate);
 
-//primitives types or value types | string | int | boolean | undefined | null
+/* # Lexical Scope - js uses lexical scoping, means scope of a variable determined by code structure at write-time, not in runtime */
+/* i.e */
+function outer() {
+  let a = "Peace";
+  function inner() {
+    console.log("Lexical", a); // scoped by parent
+  }
+  inner();
+}
+outer();
+
+/* # Shadowing - a variable declared in local scope/block scope with the same name as one in outer scope shadows the outer variable */
+/* i.e */
+var shadow = 10;
+
+function callShadow() {
+  var shadow = shadow + 5;
+  /* 
+     - here it will shadows the outer varible, but takes and logs the block scope variable
+     - here the shadow variable will hoisted to the top the function and initialized as undefined, so the log will be Nan (undefined + 5)
+     - at the if we shadow with let, we got ReferenceError: Cannot access 'shadow' before initialization
+    */
+  console.log("shadow", shadow);
+}
+callShadow();
+
+/* # Hoisting - var declarations keywords are hoisted to the top of their scope (but not initialized) leads to bugs/unexpected behaviours */
+/* i.e */
+function hois() {
+  // console.log("hois", hois); /* here we got ReferenceError: Cannot access 'hois' before initialization, this hois in TDZ */
+  let hois = "hois";
+  console.log("hois", hois);
+}
+hois();
+
+/* # Temporal Dead Zone (TDZ) 
+    - only applicable for let & const
+    - its a time between where a let or const variable is delcared or initialized 
+    - A variable is in the TDZ from the start of its scope until it is declared
+    - Accessing it during this zone results in an error.
+  */
+
+/* i.e
+    {
+      // TDZ is start from here for varible with let and const
+      console.log("tdz", tdz); this leads to ReferenceError: Cannot access 'tdz' before initialization, because its in dead zone
+      let tdz = "tdz";
+    }
+*/
+
+/* # Closures - is a function that REMEMBERS its outer lexical environment even after the outer function has finished execution */
+/* i.e */
+function clo_outer() {
+  let count = 0;
+
+  return function () {
+    count++;
+    return count;
+  };
+}
+const he = clo_outer();
+console.log("he", he()); /* log as 1 */
+console.log("he", he()); /* log as 2 */
+console.log("he", he()); /* log as 3 */
+/* inner function still acess to the count event after the outer function finished execution, thats closure in action */
+/* Closure memory behaviour - the inner function holds a reference to the variable, not the copy, Thats why the (persistent state) is preserved between calls */
+
+/* # Currying - Transforming a function with multiple arguments into a series of functions, each take one argument at a time */
+/* i.e */
+function curryiedFunc(param1) {
+  return function (param2) {
+    return function (param3) {
+      return `${param1} ${param2} ${param3}`;
+    };
+  };
+}
+const cur = curryiedFunc("Hello");
+console.log("cur", cur("Sri")("Srii"));
+// console.log("cur", cur("Srii"));
+
+// primitives types or value types | string | int | boolean | undefined | null
 let myName = "Josh"; // string
 let age = 30; // integer
 let isApproved = true; // boolean
