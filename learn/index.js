@@ -1,5 +1,15 @@
 /* 1. Basics in Js */
-/* Used to create more dynamic and user interactive websites */
+/* Used to create more dynamic and user interactive websites, and its a dynamically types language */
+/* i.e */
+let jsD = 10;
+console.log("jsD", jsD);
+console.log("typeof jsD", typeof jsD); /* number */
+
+jsD = "PEACE";
+console.log("jsD", jsD);
+console.log("typeof jsD", typeof jsD); /* string */
+
+/* here above in runtime, we may able to change any type */
 
 /* # why we use js ?
     - adds interactivity to the websites
@@ -66,7 +76,7 @@ function callShadow() {
   var shadow = shadow + 5;
   /* 
      - here it will shadows the outer varible, but takes and logs the block scope variable
-     - here the shadow variable will hoisted to the top the function and initialized as undefined, so the log will be Nan (undefined + 5)
+     - here the shadow variable will hoisted to the top the function and initialized as undefined, so the log will be NaN (undefined + 5)
      - at the if we shadow with let, we got ReferenceError: Cannot access 'shadow' before initialization
     */
   console.log("shadow", shadow);
@@ -127,14 +137,17 @@ const cur = curryiedFunc("Hello");
 console.log("cur", cur("Sri")("Srii"));
 // console.log("cur", cur("Srii"));
 
-// primitives types or value types | string | int | boolean | undefined | null
+/* 2. Datatypes */
+/* In js we have two types of Datatypes Primitive (value types), Non-Primitive (reference types) */
+
+/* # Primitives types or value types | string | int(number) | BigInt | boolean | undefined | null */
 let myName = "Josh"; // string
 let age = 30; // integer
 let isApproved = true; // boolean
 let middleName; // undefined we didn't initialize value to middleName
-let selectedColor = null; // defaultly we initialize variable with null
+let selectedColor = null; // defaultly we initialize variable with null, default value of null is 0
 
-//checked in inspect console typeof a variable
+/* # checked in inspect console typeof a variable */
 
 // typeof myName
 // 'string'
@@ -144,63 +157,136 @@ let selectedColor = null; // defaultly we initialize variable with null
 // 'boolean'
 // typeof middleName
 // 'undefined'
+// typeof null
+// 'object'
+// typeof {}
+// 'object'
+// typeof []
+// 'object'
+// typeof function () {}
+// 'function'
 
-//reference types | objects | arrays | functions
+/* # Non-primitive (Reference types) | objects | arrays | functions */
 
-// 1. objects
-// objects literal syntax {..........}
+/*  # objects */
+/* objects literal syntax {..........} */
 let person = {
   name: "Josh",
   age: 25,
 };
 console.log(person);
-// person = object | name,age = property
+/* # person = object | name,age = property */
+
 person.name = "Portialla";
-// dot notation (this is better choice)
+/* # dot notation (this is better choice) */
 console.log(person.name);
-// OR bracket notation
+
+/* # OR bracket notation */
 person["name"] = "JoshPortialla";
 console.log(person["name"]);
 
-// if property had a value only after the user selection then the bracket notation will be more helpfull
+/* # if property had a value only after the user selection then the bracket notation will be more helpfull */
 let selectedName = "Josh Portialla";
 person["name"] = selectedName;
 console.log(person["name"]);
 
-// 2. arrays (arrays is a data structure that represents list of items/data)
-// arrays literal syntax [..........]
+/* # Arrays (arrays is a data structure that represents list of items/data) */
+/* arrays literal syntax [..........] */
 
 let selectedProducts = []; // set selectedProducts variable as array
 selectedProducts = ["Boots", "Guards", "Gloves"];
 selectedProducts[3] = "ShinGuards";
 console.log(selectedProducts);
 console.log(selectedProducts.length);
-//typeof selectedProducts;
-//console.log(selectedProducts[0]);
-//console.log(selectedProducts[1]);
-//console.log(selectedProducts[2]);
+// typeof selectedProducts;
+// console.log(selectedProducts[0]);
+// console.log(selectedProducts[1]);
+// console.log(selectedProducts[2]);
 
-// 3. Functions
+/* # Functions - used to perform some operations wheenever needed */
 function welcom() {
   console.log("Hi from Js");
 }
 
-welcom(); // call a function
+welcom(); /* call a function */
 
 function greet(name, myAdjective) {
-  // name is a parameter we pass to greet function | parameter is at the time of declaration | multiple parameters also possible
+  /* name is a parameter we pass to greet function | parameter is at the time of declaration | multiple parameters also possible */
   console.log("Hi this is " + name + " you can call me " + myAdjective);
 }
-greet("LionelMessi", "LittleGenius"); // here LionelMessi is a argument to a greet fucntion | argument is the actual value of supply for that parameter
+greet("LionelMessi", "LittleGenius"); // here LionelMessi is a argument to a greet function | argument is the actual value of supply for that parameter
+
+/* # parameter - the variables listed in function defintion */
+/* # argument - the actual value passed to the function when its invoked/executed */
+/* # arguments - in non-arrow functions, without decclaring parameters we may able to get argument using arguments keyword, that arguments keyword doesn't work on arrow functions */
+/* # rest parameters - use ... to collect remaining arguments and return as array */
 
 function square(number) {
   return number * number;
 }
-//calci(9);
+// calci(9);
 console.log(square(5));
-// the above line have two functions 1. square(5) 2. is console.log() the log()
-console.log("Passing Argument"); // we passing argument in this line
-console.log(square(5)); // in this we passing an expression eg. square() inside this expression we passing argument 5 as a value supply for the parameter
+/*  the above line have two functions 1. square(5) 2. is console.log() the log() */
+console.log("Passing Argument"); /* we passing argument in this line */
+console.log(square(5));
+/* in this we passing an expression eg. square() inside this expression we passing argument 5 as a value supply for the parameter */
+
+/* # Type Conversion - since js is dynamically language, so it can any variables types at runtime */
+/* we have two main types Implicit, Explicit */
+
+/* # Implicit Type Conversion - Js automatically converts types when needed (js uses context operator to choose this conversion) */
+/* i.e */
+/* 
+  '5' + 2      // '52'  → number is coerced to string (string concatenation)
+  '5' - 2      // 3     → string is coerced to number
+  true + 1     // 2     → true becomes 1
+  false + '1'  // 'false1' → false becomes string 'false'
+*/
+
+/* # Explicit Type Conversion - We manually convert a value from one type to another using built-in-functions */
+/* i.e, we have Number, String, Boolean conversion */
+
+/* # Number Conversion */
+console.log("Number", Number("123")); /* logs 123 */
+console.log("Number", Number(true)); /* logs 1 */
+console.log("Number", Number(false)); /* logs 0 */
+console.log("Number", Number("abc")); /* logs NaN */
+console.log("Number", parseInt("10.5")); /* logs 10 */
+console.log("Number", parseFloat("10.5")); /* logs 10.5 */
+
+/* # String Conversion */
+console.log("String", String(123)); /* logs '123' */
+console.log("String", String(true)); /* logs true */
+console.log("String", String(false)); /* logs false */
+console.log("String", String(null)); /* logs 'null' */
+console.log("String", (112233).toString()); /* logs '112233' */
+
+/* # Boolean Conversion - has truthy and falsy values */
+/* # Truthy values (evaluated as true)
+  - non empty string: "test" etc...
+  - non zero number: 1, -6, 10.5 etc...
+  - {object}, [arrays]
+*/
+
+/* # Falsy values (evaluated as false) 
+  - 0, '' (empty string), null, undefined, NaN, false
+*/
+console.log("Boolean", Boolean(0)); /* logs false */
+console.log("Boolean", Boolean("hello")); /* logs true */
+console.log("Boolean", Boolean([])); /* logs true */
+console.log("Boolean", Boolean(null)); /* logs false */
+
+/* # Equality Comparison */
+/* == double equals denotes LOOSE equality */
+/* === triple equals denotes STRICT equality */
+/* i.e
+  '5' == 5      // true
+  '5' === 5     // false
+  null == undefined // true
+  null === undefined // false
+  false == 0    // true
+  false === 0   // false
+*/
 
 // operators => Arithmetic | Assignment | Comparison | Logical | Bitwise
 
