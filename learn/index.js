@@ -73,7 +73,7 @@ outer();
 var shadow = 10;
 
 function callShadow() {
-  var shadow = shadow + 5;
+  var shadow = shadow + 5; // here the outer one is inaccessible, it has no effect while the inner variable is in action
   /* 
      - here it will shadows the outer varible, but takes and logs the block scope variable
      - here the shadow variable will hoisted to the top the function and initialized as undefined, so the log will be NaN (undefined + 5)
@@ -139,6 +139,8 @@ console.log("cur", cur("Sri")("Srii"));
 
 /* 2. Datatypes */
 /* In js we have two types of Datatypes Primitive (value types), Non-Primitive (reference types) */
+/* # Primitives are copied by Value */
+/* # Non-Primitives are copied by their reference / memory location */
 
 /* # Primitives types or value types | string | int(number) | BigInt | boolean | undefined | null */
 let myName = "Josh"; // string
@@ -148,6 +150,8 @@ let middleName; // undefined we didn't initialize value to middleName
 let selectedColor = null; // defaultly we initialize variable with null, default value of null is 0
 
 /* # checked in inspect console typeof a variable */
+/* typeof - is a unary operator, used to determine the datatype of its operand */
+/* i.e syntax: typeof operand */
 
 // typeof myName
 // 'string'
@@ -190,7 +194,7 @@ let selectedName = "Josh Portialla";
 person["name"] = selectedName;
 console.log(person["name"]);
 
-/* # Arrays (arrays is a data structure that represents list of items/data) */
+/* # Arrays (arrays is a data structure that represents list of items/data with any any datatypes) */
 /* arrays literal syntax [..........] */
 
 let selectedProducts = []; // set selectedProducts variable as array
@@ -231,7 +235,7 @@ console.log("Passing Argument"); /* we passing argument in this line */
 console.log(square(5));
 /* in this we passing an expression eg. square() inside this expression we passing argument 5 as a value supply for the parameter */
 
-/* # Type Conversion - since js is dynamically language, so it can any variables types at runtime */
+/* # Type Conversion - since js is dynamically language, so it can change any variables types at runtime */
 /* we have two main types Implicit, Explicit */
 
 /* # Implicit Type Conversion - Js automatically converts types when needed (js uses context operator to choose this conversion) */
@@ -277,8 +281,8 @@ console.log("Boolean", Boolean([])); /* logs true */
 console.log("Boolean", Boolean(null)); /* logs false */
 
 /* # Equality Comparison */
-/* == double equals denotes LOOSE equality */
-/* === triple equals denotes STRICT equality */
+/* == double equals denotes LOOSE equality (check only values) */
+/* === triple equals denotes STRICT equality (check only values as well as datatypes) */
 /* i.e
   '5' == 5      // true
   '5' === 5     // false
@@ -288,50 +292,48 @@ console.log("Boolean", Boolean(null)); /* logs false */
   false === 0   // false
 */
 
-// operators => Arithmetic | Assignment | Comparison | Logical | Bitwise
+/* 3. Operators => Arithmetic | Assignment | Bitwise | Comparison/Relational | Equality | Logical | Ternary/Conditional */
 
-// Arithmetic operators
-
+/* # Arithmetic operators */
 let x = 2;
 let y = 2;
-console.log(x + y); //plus
-console.log(x - y); //minus
-console.log(x * y); //multiply
-console.log(x / y); //division
-console.log(x % y); //remainder of division
-console.log(x ** y); //exponentiation new in Js means x to the power of y
-console.log(x++); //post-increment
-console.log(++x); //pre-increment
-console.log(x); //after increment
-console.log(x--); //post-decrement
-console.log(--x); //pre-decrement
+console.log(x + y); // plus
+console.log(x - y); // minus
+console.log(x * y); // multiply
+console.log(x / y); // division
+console.log(x % y); // remainder of division
+console.log(x ** y); // exponentiation new in Js means x to the power of y
+console.log(x++); // post-increment
+console.log(++x); // pre-increment
+console.log(x); // after increment
+console.log(x--); // post-decrement
+console.log(--x); // pre-decrement
 
-//Assignment operators = , += , *=
+/* # Assignment operators = , += , *=, */
 let a = 100;
 a = a + 20; // a+=20
 a = a * 10; // a*=10
 console.log(a);
 
-//Comparison operator
-// relational operators >,>=,<,<=
+/* # Comparison operator/Relational operators >,>=,<,<= */
 let m = 0;
 console.log(m > 0);
 console.log(x >= 0);
 console.log(x < 0);
 console.log(x <= 0);
 
-//equality operators
+/* # Equality operators */
 console.log(0.1 === 0); // === indicates Strict equality (check datatype as well as value)
 console.log(1 !== 0);
 console.log("0" == 0); // == indicates loose equality (check only the values)
 console.log(true == 1);
 
-// Ternary / Conditional operator
+/* # Ternary / Conditional operator */
 let points = 110;
 let customerType = points > 100 ? "Gold" : "Silver";
 console.log(customerType);
 
-//logical operators AND = && | OR = || | NOT !
+/* # Logical operators AND = && | OR = || | NOT ! */
 let highIncome = true;
 let goodCredits = true;
 let eligibleForLoan = highIncome && goodCredits;
@@ -339,130 +341,138 @@ console.log("Application Approved", eligibleForLoan);
 let applicationRefused = !eligibleForLoan;
 console.log("Application Refused", applicationRefused);
 
-// Logical operators with Non-booleans
-// there are two falsy and truthy
+/* Logical operators with Non-booleans, there are two falsy and truthy */
+/* falsey values are undefined, null, 0, false, '', NaN */
+/* false || '' or false or 0 or undefined or NaN then it is falsy value */
 
-// falsey values are undefined,null,0,false,'',NaN
-// false || '' or false or 0 or undefined or NaN then it is falsy value
+/* truthy values returns true abt that condition */
+/* true || 'Josh' or 1 or true then it is truthy value */
 
-// truthy values returns true abt that condition
-// false || 'Josh' or 1 or true then it is truthy value
-
-// short-cicuiting
-// It means it check the condition until it gets True when it gets true then it will stop checking the condition. The remaining conditions remains unchecked.
-let userColor = undefined;
-let defaultColor = "Black";
-let currentColor = userColor || defaultColor;
-console.log("currentColor", currentColor); // falsy statement
-
-let userCColor = "Gold";
-let defaultCColor = "Black";
-let currentCColor = userCColor || defaultCColor;
-console.log(currentCColor); // truthy statement
-
-// Operator Precedance
-
-let test = 5 + 3 * 10; // It means
+/* # Operator Precedance - we give operation precedance to the operands/values using paranthesis */
+let test = 5 + 3 * 10;
 console.log(test); // output will be 35
 
-let ttest = (5 + 3) * 10; // It means
-console.log(ttest); // output will be 80 because we give operator precedance using paranthesis ( ) then first it will take values inside the paranthesis.....and so on
+let ttest =
+  (5 + 3) *
+  10; /* here we give precdance to the value with paranthesis, then while execution it will taken as first preference and so on */
+console.log(ttest);
 
-// swapping of variables
-
+/* # Swapping of variables with third variable */
 let first = 1;
 let second = 2;
 let third = first;
 first = second;
 second = third;
+console.log("first", first);
+console.log("second", second);
 
-console.log(first);
-console.log(second);
+/* # Swapping of variables without third variable, use destructuring method */
+let aaaa = 100,
+  bbbb = 200;
+console.log("aaaa bbbb", ([aaaa, bbbb] = [bbbb, aaaa]));
 
-// if else
+/* 4. Conditional Statements */
+
+/* # if else */
+/* syntax... */
+
 // if(condition)
-//     //statement; // this for single line statement......
+//     //statement; // this for single line statement...
 
 // if(condition) {
 //     //statement 1 ;
 //     //statement 2;
-//     // and so on.....  //use curly braces for multiple statements.........
+//     // and so on...  //use curly braces for multiple statements...
 // }
 // else if(condition) {
-//     // some statements here.....
+//     // some statements here...
 // }
 // else{
-//     // some statements here.........
+//     // some statements here...
 // }
-
-// Switch Case
-// syntax...
 
 let role = "guest";
 
-switch (
-  role // instead of condition we have to pass variable
-) {
-  case "guest": //statement ;
-    console.log("Guest User");
-    break;
+/* i.e with if else */
+if (role === "guest") console.log("Guest User");
+else if (role === "admin") console.log("Admin User");
+else if (role === "superadmin") console.log("Super Admin");
+else console.log("Unknown User");
+
+/* # Switch Case */
+/* syntax... */
+
+switch (role /* instead of condition we have to pass variable */) {
+  case "guest" /* check case/condition */:
+    console.log("Guest User"); /* statement */
+    break; /* break keyword used to cut the execution and jump out of the iteration/condition */
   case "admin":
     console.log("Admin User");
     break;
   case "superadmin":
     console.log("Super Admin");
     break;
-  default:
+  default: /* default block will if all the case fails, then fall into default block i.e fallback option */
     console.log("Unknown User");
 }
 
-if (role === "guest") console.log("Guest User");
-else if (role === "admin") console.log("Admin User");
-else if (role === "superadmin") console.log("Super Admin");
-else console.log("Unknown User");
+/* # Short-circuiting */
+/* It means it check the condition until it gets True when it gets true then it will stop checking the condition. The remaining conditions remains unchecked. */
+let userColor = undefined;
+let defaultColor = "Black";
+let currentColor = userColor || defaultColor;
+console.log("currentColor", currentColor);
 
-// loops for | while | do while | for in | for off
+let userCColor = "Gold";
+let defaultCColor = "Black";
+let currentCColor = userCColor || defaultCColor; /* here its short-circuiting */
+console.log("currentCColor", currentCColor);
 
-// for(initialExpression; Condition; incrementExpression) {
-//     // statements..... multiple statements....
-// }
+/* 5. Loops for | while | do-while | for-in | for-of */
+
+/* # for - syntax... */
+/* for(initialExpression; Condition; incrementExpression) {
+    // statements... multiple statements...
+} */
 
 for (let i = 0; i < 5; i++) {
   console.log("Josh here..", i);
 }
 
+/* # iteratin with conditional statements */
 for (let a = 0; a < 5; a++) {
   if (a % 2 != 0) console.log("Odd", a);
   else console.log("Even", a);
 }
 
-// in while and do while loops we have declare variable externally not in the condition.......
+/* # in while and do-while loops we have declare variable externally not in the condition... */
 
-//while entry controlled loop
+/* # while entry controlled loop */
 let b = 0;
 while (b < 5) {
-  if (b % 2 != 0) console.log("Odd Mosh here...", b);
-  else console.log("Even Mosh here...", b);
+  if (b % 2 != 0) console.log("Odd PEACE here...", b);
+  else console.log("Even PEACE here...", b);
   b++;
 }
 
-//let b = 0; // here is a syntax error identifier b is already declared....we declare b externally for while loop here for loop variable declaration and while loop variable declaration are differs....in for loop we declare internally in condition this is called scope..
+// let b = 0; /* here is a syntax error identifier b is already declared...we declare b externally for while loop here for loop variable declaration and while loop variable declaration are differs...in for loop we declare internally in condition this is called scope.. */
 
-// do while exit controlled loop it will execute the statement atleast once whether it is true or false coz this will be check the condition in the end thats why it is called as exit controlled loop
+/* # do while exit controlled loop it will execute the statement atleast once whether it is true or false coz this will be check the condition in the end thats why it is called as exit controlled loop */
 let c = 0;
 do {
-  if (c % 2 == 0) console.log("Even Fuji here...", c);
-  else console.log("Odd Fuji here...", c);
+  if (c % 2 == 0) console.log("Even PATIENCE here...", c);
+  else console.log("Odd PATIENCE here...", c);
   c++;
 } while (c < 5);
 
-//infinite loops // inifinite or forever
+/* # infinite loops (inifinite or forever in iteration state) */
 let d = 0;
 while (d < 5) {
   console.log("Infinite loop", d);
-  d++; // infinite loops if increment didn't placed here it leads to infinite loop...
+  d++; /* infinite loops if increment didn't placed here it leads to infinite loop... */
 }
-//eg's for inifinite loop
+
+/* i.e for inifinite loop */
 
 // while(true) {
 
@@ -472,35 +482,40 @@ while (d < 5) {
 
 // } while(true);
 
-// for(i = 0; i > 0; i++){
+// for(i = 0; i >= 0; i++){
 
 // }
 
-// for in loop in object   || for in loop mainly used to iterate properties of an object and its value
+/* # (for-in loops with object) for-in loop mainly used to iterate properties of an object and its value */
 let testAgain = {
   name: "Cris",
   age: 35,
 };
+
 for (let key in testAgain) {
-  // in every iteration the key hold the property of testAgain object...using bracket notation we access object property with its value....if we use dot notation then we dont have a key property in testAgain object......
-  //console.log(key);
-  console.log(key, testAgain[key]);
+  /* in every iteration the key hold the property of testAgain object...using bracket notation we access object property with its value....if we use dot notation then we dont have a key property in testAgain object... */
+  // console.log(key);
+  console.log(`for-in with objects ${key}`, testAgain[key]);
 }
 
-// for in loop (in array)
+/* # (for-in loops with arrays) */
 let colors = ["gold", "white", "black"];
 for (let index in colors) {
-  // the index will store the index value of each element in an array
-  console.log("for of**", index);
-  console.log("for of*", index, colors[index]);
+  // the index will store the index position of each element in an array
+  console.log("for-in with array index", index);
+  console.log("for-in with array", index, colors[index]);
 }
 
-// for of loop || mainly used to iterate elements or items in an array
-for (let color of colors) {
-  console.log(color);
+/* # (for-of) mainly used to iterate elements or items in an array */
+for (let [i, color] of colors.entries()) {
+  /* always entries() to get index as well as the values */
+  console.log("for-off with array index", i);
+  console.log("for-off with array", color);
 }
 
-//let speedLimit = 70;
+/* train some logics section */
+
+// let speedLimit = 70;
 myFunction(78);
 function myFunction(speed) {
   const speedLimit = 70;
@@ -508,27 +523,23 @@ function myFunction(speed) {
   const maxPoints = 12;
   if (speed <= speedLimit + kmPerPoint) {
     console.log("ok");
-    return; // if condition satisfies then it will stop checking the remaining codes outside the if condition
+    return; /* if condition satisfies then it will stop checking the remaining codes outside the if condition */
   }
   let points = Math.floor((speed - speedLimit) / kmPerPoint);
   if (points >= maxPoints) console.log("License Suspended");
   else console.log("Points", points);
 }
 
-// get count of truthy value as results
+/* # get count of truthy value as results */
 const myArray = [undefined, null, "", 0, false, 1, 2, 5, true];
-
 console.log("getTruthyCount", getTruthyCount(myArray));
-
 function getTruthyCount(myArray) {
   let count = 0;
-
   for (let value of myArray) if (value) count++;
-
   return count;
 }
 
-// get the property of an object with the type of string....
+/* # get the property of an object with the type of string... */
 const movie = {
   mTitle: "a",
   releaseYear: 2007,
@@ -545,22 +556,19 @@ function showList(movie) {
   }
 }
 
-// get multiples of 2 & 4 limit 10
-
+/* # get multiples of 2 & 4 limit 10 */
 function getSum() {
   let sum = 0;
-  const limit = 10; // initialization
-
+  const limit = 10; /* initialization */
   for (let i = 0; i <= limit; i++) {
     if (i % 2 == 0 || i % 4 == 0) sum += i;
-  } // here condition
+  } /* here condition */
 
-  return sum; // return statement
+  return sum; /* return statement */
 }
+console.log("getSum()", getSum());
 
-console.log(getSum());
-
-// get which grade
+/* # get which grade */
 // const getMarks = [80,90,70,50,60];
 
 // console.log(getGrade());
@@ -582,7 +590,7 @@ console.log(getSum());
 //     return sum / array.length;
 // }    /// not completed have to work
 
-// stars progrAM
+/* # stars program */
 getStar(7);
 function getStar(stars) {
   for (let row = 1; row <= stars; row++) {
@@ -592,7 +600,7 @@ function getStar(stars) {
   }
 }
 
-// prime numbers divisible by 1 and the given number itself
+/* # prime numbers divisible by 1 and the given number itself */
 getPrime(10);
 function getPrime(primes) {
   for (let number = 2; number <= primes; number++)
@@ -605,21 +613,24 @@ function isPrime(number) {
     if (number % factor == 0) return false;
     else return true;
 }
-// these named as single responsibility principle each function carries their own functionality ( getPrime() & isPrime() based on single responsiblity principle)
-// getStar() based on normal function
 
-/// Objects  ( mainly objects are collections of key value pairs {property : values} we want to encapsulate them inside of an object] )
-// why we create objects coz the varibles or properties we declare are highlt related to each other
-// eg if a circle contains so many properties (below)
+/* # these named as single responsibility principle each function carries their own functionality ( getPrime() & isPrime() based on single responsiblity principle) */
+
+/* # getStar() based on normal function */
+
+/* train some logics section */
+
+/* # Objects ( mainly objects are collections of key value pairs {property : values} we want to encapsulate them inside of an object] ) */
+/* why we create objects coz the varibles or properties we declare are highlt related to each other */
+/* eg if a circle contains so many properties (below) */
 
 // let radius = 3;
 // let diameter = 6;
 // let x = 2;
 // let y = 1;
 
-// and so on may be 10 properties also possible
-// instead of creating like above, we have create circle object
-//inside an object we create one or more key value pairs (below) the values in key-value pairs in javascript should be anything eg function,array,null,'',undefined,true,false,23,'hello',......and so on
+/* and so on may be 10 properties also possible, instead of creating like above, we have create circle object */
+/* inside an object we create one or more key value pairs, the values in key-value pairs in javascript should be anything i.e function, array, null, '', undefined, true, false, 23, 'hello' and so on */
 
 // let circle1 = {
 //     radius : 2,
@@ -627,7 +638,7 @@ function isPrime(number) {
 //     y : 4,
 // };
 
-// we can also create another object or array or function inside an object
+/* # we can also create another object or array or function inside an object */
 // above eg shows, instead of creating x and y key value pairs we create another object inside a object (below)
 
 // let circle2 = {
@@ -638,10 +649,10 @@ function isPrime(number) {
 //     }
 // };
 
-// mainly purpose of an object is to group highly relates variables
+/* # mainly purpose of an object is to group highly relates variables */
 
-//function drawCircle() {} // these functions are highly related to object circle so instead of declaring stand-alone functions ...
-//function moveCircle() {} // we declare functions inside the objects (below)
+// function drawCircle() {} /* these functions are highly related to object circle so instead of declaring stand-alone functions ... */
+// function moveCircle() {} /* we declare functions inside the objects (below) */
 
 let circle1 = {
   radius: 2,
@@ -650,24 +661,24 @@ let circle1 = {
     y: 2,
   },
   draw: function () {
-    console.log("Hello Js.");
+    console.log("Hello Circle.");
   },
 };
-//console.log(circle3.draw());
+// console.log(circle3.draw());
 circle1.draw();
 
-// these are style of OOP concept (above)
-// In OOP terms if a function is a part of an object then the function should be called as Method
+/* # these are style of OOP concept (above) */
+/* # In OOP terms if a function is a part of an object then the function should be called as Method */
 
-// next Factory Functions
-// if we need another circle object with same key value pairs and funtions
-// instead of duplicate the same objects and change the object namee to circle2 instead to doing like this here
-// we can use factory functions in js.........
-// these factory functions produce objects like factory produces products..... ( below eg )
+/* 6. Factory Functions */
+/* if we need another circle object with same key value pairs and funtions */
+/* instead of duplicate the same objects and change the object namee to circle2, */
+/* we can use factory functions in js... */
+/* these factory functions produce objects like factory produces products..... ( below eg ) */
 
 // function createCircle(radius) {
-//     return {  // just return the object inside the factory function whenever call the function its return a object.
-//         radius : radius, // here we pass radius as parameter
+//     return {  /* just return the object inside the factory function whenever call the function its return a object. */
+//         radius : radius, /* here we pass radius as parameter */
 //         location : {
 //             x : 1,
 //             y : 2,
@@ -680,87 +691,89 @@ circle1.draw();
 
 function createCircle(radius) {
   return {
-    // just return the object inside the factory function whenever call the function its return a object.
-    radius, // here we pass radius as parameter ||  this line exactly equivalent to this => radius : radius => 1st radius->key/property | 2nd radius->value
+    /* just return the object inside the factory function whenever call the function its return a object. */
+    radius /* here we pass radius as parameter, this line exactly equivalent to this => radius : radius => 1st radius->key/property | 2nd radius->value */,
     // draw : function() {
     //     console.log('Hello Js.');
     // }
-    // we create function like this also
+    /* we create function like this also */
     draw() {
       console.log("Draw a Circle");
     },
   };
 }
 
-//createCircle.  after dot it shows a popup purple inidcates methods
-// blue indicates properties of an object
+/* createCircle.  after dot it shows a popup purple inidcates methods, blue indicates properties of an object */
 
 let drawCircle1 = createCircle(1);
-console.log(drawCircle1);
+console.log("drawCircle1", drawCircle1);
+
 let drawCircle2 = createCircle(2);
-console.log(drawCircle2);
-// factory functions working like this
-//instead of duplicate the same objects and change the object namee to circle2 here
-// we can use factory functions in js.........
-// we can pass different argument to get desired output
-// in Factory Functions we use naming conventions-> camel notations like oneTwoThree() {   } ......
+console.log("drawCircle2", drawCircle2);
 
-// Next Constructor Funtions similar to factory functions
-// in Constructor Functions use naming conventions-> PascalNotation like OneTwoThree() {   } ......
+/* # factory functions working like this */
+/* instead of duplicate the same objects and change the object namee to circle2 here */
+/* we can use factory functions in js... */
+/* we can pass different argument to get desired output */
+/* in Factory Functions we use naming conventions-> camelNotations like oneTwoThree() {   } ... */
 
-// camelcased => oneTwoThree() -> this for factory functions
-// pascalcased => OneTwoThree() -> this for Constructor functions
+/* 7. Constructor Funtions - it is similar to factory functions */
+/* in Constructor Functions use naming conventions-> PascalNotation like OneTwoThree() {   } ... */
+
+/* # camelcased => oneTwoThree() -> this for factory functions */
+/* # pascalcased => OneTwoThree() -> this for Constructor functions */
 
 function ConstructObj(radius) {
-  // job of the function is to construct or create object
-  // instead of return a object we use different approach
-  // in javascript we have KEYWORD called this
-  this.radius = radius; // this keyword is a reference to the below mentioned Constructor object that is executing this piece of code
-  // above line this.radius => this->keyword, radius->property, = radius-> passing a argument to parameter
+  /* job of the function is to construct or create object, instead of return a object we use different approach, in javascript we have KEYWORD called this */
+  this.radius =
+    radius; /* this keyword is a reference to the below mentioned Constructor object that is executing this piece of code */
+  /* above line this.radius => this->keyword, radius->property, = radius-> passing a argument to parameter */
   this.draw = function () {
     console.log("Good to see JS in action.");
   };
 }
-// to create circle object using Constructor function
-const ConstructCircle = new ConstructObj(2);
-// here new is a keyword three things gonna happen (below)
-// 1-> new keyword creates an empty javascript object eg: let x = { }; => empty object
-// 2-> this -> keyword point the empty object  it means its points out radius property and draw function from ConstructObj() function
-// 3-> finally, the new keyword return the new object from ConstructObj() function  eg: return this; but we dont want to explicitly use the return this; it wwill done under new keyword (Constructor Function)
-console.log(ConstructCircle);
 
-// Next Dynamic Objects ->  objects are always dynamic
+/* to create circle object using Constructor function */
+const ConstructCircle = new ConstructObj(2);
+
+/* # here new is a keyword three things gonna happen (below) */
+
+/* 1-> new keyword creates an empty javascript object eg: let x = { }; => empty object */
+/* 2-> this -> keyword point the empty object, it means its points out radius property and draw function from ConstructObj() function */
+/* 3-> finally, the new keyword return the new object from ConstructObj() function  eg: return this; but we dont want to explicitly use the return this; it will done under new keyword (Constructor Function) */
+
+console.log("ConstructCircle", ConstructCircle);
+
+/* # Next Dynamic Objects -> objects are always dynamic */
 const dynamicObj = {
   radius: 5,
 };
 
-dynamicObj.color = "Red"; // we can add more properties and methods in the objects
+dynamicObj.color =
+  "Red"; /* we can add more properties and methods in the objects */
 (dynamicObj.drawCir = function () {
   console.log("Draw a Circle with Radius with Radius");
 }),
   (dynamicObj.rectSide = 4),
-  (dynamicObj.squ = 4), // we can also delete properties of an object using delete keyword
+  (dynamicObj.squ = 4) /* we can also delete properties of an object using delete keyword */,
   delete dynamicObj.rectSide;
 delete dynamicObj.squ;
 
-console.log(dynamicObj);
+console.log("dynamicObj", dynamicObj);
 
-// by using const keyword we cant reassign const variable
-// let dynamicObj = {};
-// we face Uncaught SyntaxError: Identifier 'dynamicObj' has already been declared (at index.js:552:5)
+/* 8. Constructor Property */
+/* In javascript every object has a constructor property and that references a function that used to create a object. */
+/* let mnb = {}; // the javascript engine take like this let mnb = new Object(); this method is kind of a Constructor Functions */
 
-// Next Constructor Property
-// In javascript every object has a constructor property and that references a function that used to create a object.
-// eg:
-//let mnb = {}; // the javascript engine take like this let mnb = new Object(); this method is kind of a Constructor Functions
+/* In javascript few built-in Constructors are there */
+new String(); /* for creating Strings */
+/* instead of using this we use string literals like => '',"",`` by using this simple & cleaner than using Constructor. */
 
-// In javascript few built-in Constructors are there
-// eg :
-new String(); // for creating Strings //
-// instead of using this we use string literals like => '',"",`` by using this simple & cleaner than using Constructor.
-new Boolean(); // either true or false
-new Number(); // 1,2,3...
-new Date(); // returns current date as Date Object
+new Boolean(); /* either true or false */
+
+new Number(); /* 1,2,3... */
+
+new Date(); /* returns current date as Date Object */
 
 // NExt Functions and Objects
 
