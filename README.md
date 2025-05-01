@@ -89,6 +89,32 @@ This repository contains a high-level overview of essential JavaScript concepts 
 
 ---
 
+### 🔹 Spread Operator
+
+- Merging arrays/objects
+- Copying data without reference
+- Overriding values
+
+---
+
+### 🔹 Try-Catch (Error Handling)
+
+- Synchronous error handling
+- `try`, `catch`, `finally`
+- Optional `catch` binding
+
+---
+
+### 🔹 Destructuring
+
+- Array destructuring
+- Object destructuring
+- Nested destructuring
+- Function parameter destructuring
+- Default values & aliasing
+
+---
+
 ## 📚 Purpose
 
 Use this guide as a revision sheet before JavaScript technical rounds or as a structured reference while learning JavaScript.
