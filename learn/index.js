@@ -139,8 +139,11 @@ console.log("cur", cur("Sri")("Srii"));
 
 /* 2. Datatypes */
 /* In js we have two types of Datatypes Primitive (value types), Non-Primitive (reference types) */
-/* # Primitives are copied by Value */
-/* # Non-Primitives are copied by their reference / memory location */
+
+/* # Primitives are copied by Value - value type the value will be stored only inside of this varible when we copy one variable to another the copied variable is passed to another varible | they are completely independent of each other */
+
+/* # Non-Primitives are copied by their reference/memory location, reference types the value will be stored in some memory location and when we copy one variable to another, the value that is stored in memory location will be copied to another variable. if we modify any one variable that will be affect another if we copy the variable to one another
+ */
 
 /* # Primitives types or value types | string | int(number) | BigInt | boolean | undefined | null */
 let myName = "Josh"; // string
@@ -150,7 +153,8 @@ let middleName; // undefined we didn't initialize value to middleName
 let selectedColor = null; // defaultly we initialize variable with null, default value of null is 0
 
 /* # checked in inspect console typeof a variable */
-/* typeof - is a unary operator, used to determine the datatype of its operand */
+
+/* # typeof - is a unary operator, used to determine the datatype of its operand */
 /* i.e syntax: typeof operand */
 
 // typeof myName
@@ -169,6 +173,19 @@ let selectedColor = null; // defaultly we initialize variable with null, default
 // 'object'
 // typeof function () {}
 // 'function'
+
+/* # in (operator) - is a operator that check if a property exists in an object (or an index exists in arrays) */
+/* i.e syntax: "property" in object */
+
+/* with objects */
+// let carcar = {name: "city", model: 2001};
+// console.log("in check obj", "color" in carcar) /* logs false */
+// console.log("in check obj", "model" in carcar) /* logs true */
+
+/* with arrays */
+// let carcarArr = ["city", "swift"];
+// console.log("in check arr", 0 in carcarArr) /* logs true */
+// console.log("in check arr", 2 in carcarArr) /* logs false */
 
 /* # Non-primitive (Reference types) | objects | arrays | functions */
 
@@ -486,6 +503,7 @@ while (d < 5) {
 
 // }
 
+/* # for-in loops designed to iterate object, but can able to iterate over arrays also */
 /* # (for-in loops with object) for-in loop mainly used to iterate properties of an object and its value */
 let testAgain = {
   name: "Cris",
@@ -506,6 +524,7 @@ for (let index in colors) {
   console.log("for-in with array", index, colors[index]);
 }
 
+/* # for-of loops only designed to iterate arrays only */
 /* # (for-of) mainly used to iterate elements or items in an array */
 for (let [i, color] of colors.entries()) {
   /* always entries() to get index as well as the values */
@@ -513,112 +532,18 @@ for (let [i, color] of colors.entries()) {
   console.log("for-off with array", color);
 }
 
-/* train some logics section */
+/* # break and continue keywords - these are loop controlled statements, used to alter normal loop execution flow */
+/* break - used to exit the loop regardless of the condition */
+/* continue - used to skip the current iteration block and move to the next iteration */
 
-// let speedLimit = 70;
-myFunction(78);
-function myFunction(speed) {
-  const speedLimit = 70;
-  const kmPerPoint = 5;
-  const maxPoints = 12;
-  if (speed <= speedLimit + kmPerPoint) {
-    console.log("ok");
-    return; /* if condition satisfies then it will stop checking the remaining codes outside the if condition */
-  }
-  let points = Math.floor((speed - speedLimit) / kmPerPoint);
-  if (points >= maxPoints) console.log("License Suspended");
-  else console.log("Points", points);
-}
-
-/* # get count of truthy value as results */
-const myArray = [undefined, null, "", 0, false, 1, 2, 5, true];
-console.log("getTruthyCount", getTruthyCount(myArray));
-function getTruthyCount(myArray) {
-  let count = 0;
-  for (let value of myArray) if (value) count++;
-  return count;
-}
-
-/* # get the property of an object with the type of string... */
-const movie = {
-  mTitle: "a",
-  releaseYear: 2007,
-  rating: 8.9,
-  director: "b",
-  plot: "c",
-  storyLine: "d",
-};
-console.log(showList(movie));
-
-function showList(movie) {
-  for (let key in movie) {
-    if (typeof movie[key] == "string") console.log(key, movie[key]);
+/* # labeled break keyword - its one of the advanced concepts in js */
+/* i.e */
+breakMe: for (let i = 0; i < 2; i++) {
+  for (let j = 0; j < 2; j++) {
+    if (i == 1 && j === 1) break breakMe;
+    console.log("labeled break", `i ${i} j ${j}`);
   }
 }
-
-/* # get multiples of 2 & 4 limit 10 */
-function getSum() {
-  let sum = 0;
-  const limit = 10; /* initialization */
-  for (let i = 0; i <= limit; i++) {
-    if (i % 2 == 0 || i % 4 == 0) sum += i;
-  } /* here condition */
-
-  return sum; /* return statement */
-}
-console.log("getSum()", getSum());
-
-/* # get which grade */
-// const getMarks = [80,90,70,50,60];
-
-// console.log(getGrade());
-// function getGrade(getMarks) {
-//     let average = getCalculation(getMarks);
-
-//     if(average < 60) return 'Grade F';
-//     if(average < 70) return 'Grade D';
-//     if(average < 80) return 'Grade C';
-//     if(average < 90) return 'Grade B';
-//     return 'Grade A'
-// }
-
-// function getCalculation(array) {
-//     let sum = 0;
-//     for(let value of array)
-//     console.log(value);
-//     sum += value;
-//     return sum / array.length;
-// }    /// not completed have to work
-
-/* # stars program */
-getStar(7);
-function getStar(stars) {
-  for (let row = 1; row <= stars; row++) {
-    let pattern = "";
-    for (let i = 0; i < row; i++) pattern += "*";
-    console.log(pattern);
-  }
-}
-
-/* # prime numbers divisible by 1 and the given number itself */
-getPrime(10);
-function getPrime(primes) {
-  for (let number = 2; number <= primes; number++)
-    if (isPrime(number)) console.log("primenumber*", number);
-}
-
-function isPrime(number) {
-  //let isPrime = true;
-  for (let factor = 2; factor < number; factor++)
-    if (number % factor == 0) return false;
-    else return true;
-}
-
-/* # these named as single responsibility principle each function carries their own functionality ( getPrime() & isPrime() based on single responsiblity principle) */
-
-/* # getStar() based on normal function */
-
-/* train some logics section */
 
 /* # Objects ( mainly objects are collections of key value pairs {property : values} we want to encapsulate them inside of an object] ) */
 /* why we create objects coz the varibles or properties we declare are highlt related to each other */
@@ -775,6 +700,215 @@ new Number(); /* 1,2,3... */
 
 new Date(); /* returns current date as Date Object */
 
+/* 9. Spread Operator - 
+      - the spread operator expands iterables like (arrays, objects, strings) into individual elements 
+      - spread operator doesn't mutate the original object, it creates new one
+      - when property overlaps i.e age: 21, age: 24, last one wins and its make shallow copy 
+*/
+/* # denoted as ... (three dots) */
+
+/* # Use cases of Spread Operator */
+/* # with arrays */
+let spreadArr = [1, 2, 3];
+let spreadArr2 = [...spreadArr, 4, 5]; /* logs [1,2,3,4,5] */
+console.log("spreadArr", spreadArr);
+console.log("spreadArr2", spreadArr2);
+/* changes spreadArr2 wont affect the spreadArr, its a shallow copy not deep copy  */
+
+/* # array (merging using spread) */
+console.log("spreadArr Merge", [...spreadArr, ...spreadArr2]);
+
+/* with objects */
+let spreadObj = { name: "sri" };
+let spreadObj2 = { ...spreadObj, age: 21 };
+let spreadObj3 = { ...spreadObj2, age: 24 };
+console.log("spreadObj", spreadObj);
+console.log("spreadObj2", spreadObj2);
+console.log("spreadObj3", spreadObj3);
+console.log("spreadObj2", spreadObj2);
+
+/* # objects (merging using spread) */
+console.log("spreadObj Merge", {
+  ...spreadObj,
+  ...spreadObj2,
+  ...spreadObj3,
+}); /* logs {name: "sri", age: 24} */
+
+/* # with string */
+let spreadStr = "BELOVED";
+console.log("spreadStr", [...spreadStr]);
+
+/* 10. Exception Handling with try and catch, finally - used to handle runtime errors without crashing the application */
+/* syntax... */
+try {
+  // in try syntax errors are not caught, only runtime errors will be caught
+} catch (e) {
+  // to handle exceptions (if errors occurs in try block then catches the error and gives access to the Error object)
+} finally {
+  // executes this block regardless of the errors
+}
+
+/* # use throw keyword to customly through a error with custom message */
+/* i.e
+  try {
+    let a = 1;
+    if (a === 1) throw new Error("Some went wrong, kindly check"),  this will caught in catch block
+  } catch (e) {
+    console.log("error", e.message); 
+    // here do any operations showing any errors to the users using alert boxes
+  }
+*/
+
+/* 11. Destructuring - used to unpack values from arrays / properties from object to a distinct variables */
+
+/* with arrays */
+let [da1, da2, da3] = [1, 2, 3];
+// let [, , da3] = [1, 2, 3]; /* its for skip elements, only destructure third element */
+// let [da1, da2, da3 = 3] = [1, 2]; /* its for default value, if array have third element then value taken else its default value */
+console.log("da1", da1);
+console.log("da2", da2);
+console.log("da3", da3);
+
+/* with objects */
+let { nameDt, skill } = { nameDt: "buddha", skill: "wisdom" };
+console.log("destruc name", nameDt);
+console.log("destruc skill", skill);
+
+let { nameDt: buddha, skill: wisdom } = {
+  nameDt: "buddha",
+  skill: "wisdom",
+}; /* here we unpack properties with desired variable names */
+console.log("destruc buddha", buddha);
+console.log("destruc wisdom", wisdom);
+
+/* # Destructuring Nested Use Cases */
+const {
+  profile: {
+    contact: { email },
+  },
+} = {
+  id: 1,
+  profile: {
+    username: "sri",
+    contact: {
+      email: "sri@example.com",
+    },
+  },
+};
+
+console.log("nested destructuring", email);
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/* train some logics section */
+
+// let speedLimit = 70;
+myFunction(78);
+function myFunction(speed) {
+  const speedLimit = 70;
+  const kmPerPoint = 5;
+  const maxPoints = 12;
+  if (speed <= speedLimit + kmPerPoint) {
+    console.log("ok");
+    return; /* if condition satisfies then it will stop checking the remaining codes outside the if condition */
+  }
+  let points = Math.floor((speed - speedLimit) / kmPerPoint);
+  if (points >= maxPoints) console.log("License Suspended");
+  else console.log("Points", points);
+}
+
+/* # get count of truthy value as results */
+const myArray = [undefined, null, "", 0, false, 1, 2, 5, true];
+console.log("getTruthyCount", getTruthyCount(myArray));
+function getTruthyCount(myArray) {
+  let count = 0;
+  for (let value of myArray) if (value) count++;
+  return count;
+}
+
+/* # get the property of an object with the type of string... */
+const movie = {
+  mTitle: "a",
+  releaseYear: 2007,
+  rating: 8.9,
+  director: "b",
+  plot: "c",
+  storyLine: "d",
+};
+console.log(showList(movie));
+
+function showList(movie) {
+  for (let key in movie) {
+    if (typeof movie[key] == "string") console.log(key, movie[key]);
+  }
+}
+
+/* # get multiples of 2 & 4 limit 10 */
+function getSum() {
+  let sum = 0;
+  const limit = 10; /* initialization */
+  for (let i = 0; i <= limit; i++) {
+    if (i % 2 == 0 || i % 4 == 0) sum += i;
+  } /* here condition */
+
+  return sum; /* return statement */
+}
+console.log("getSum()", getSum());
+
+/* # get which grade */
+// const getMarks = [80,90,70,50,60];
+
+// console.log(getGrade());
+// function getGrade(getMarks) {
+//     let average = getCalculation(getMarks);
+
+//     if(average < 60) return 'Grade F';
+//     if(average < 70) return 'Grade D';
+//     if(average < 80) return 'Grade C';
+//     if(average < 90) return 'Grade B';
+//     return 'Grade A'
+// }
+
+// function getCalculation(array) {
+//     let sum = 0;
+//     for(let value of array)
+//     console.log(value);
+//     sum += value;
+//     return sum / array.length;
+// }    /// not completed have to work
+
+/* # stars program */
+getStar(7);
+function getStar(stars) {
+  for (let row = 1; row <= stars; row++) {
+    let pattern = "";
+    for (let i = 0; i < row; i++) pattern += "*";
+    console.log(pattern);
+  }
+}
+
+/* # prime numbers divisible by 1 and the given number itself */
+getPrime(10);
+function getPrime(primes) {
+  for (let number = 2; number <= primes; number++)
+    if (isPrime(number)) console.log("primenumber*", number);
+}
+
+function isPrime(number) {
+  //let isPrime = true;
+  for (let factor = 2; factor < number; factor++)
+    if (number % factor == 0) return false;
+    else return true;
+}
+
+/* # these named as single responsibility principle each function carries their own functionality ( getPrime() & isPrime() based on single responsiblity principle) */
+
+/* # getStar() based on normal function */
+
+/* train some logics section */
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 // NExt Functions and Objects
 
 function ConstructObj(radius) {
@@ -885,11 +1019,11 @@ for (let key of Object.keys(circle2)) {
 
 // Object.keys(circle2) in this method we used above
 // Object is a built in constructor function
-//Object.keys // already used above eg's using dot notation its shows a popup that list of methods and properties
+// Object.keys // already used above eg's using dot notation its shows a popup that list of methods and properties
 // on the list we use keys method that returns String[] string array / strings properties and methods of an object
 
 // and also have another method
-//Object.entries // instead of return String[], it returns key value pairs  (below)
+// Object.entries // instead of return String[], it returns key value pairs  (below)
 
 for (let key of Object.entries(circle2)) {
   console.log(key, circle2[key]); // this will get the objects property, also get properties value
