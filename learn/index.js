@@ -252,6 +252,66 @@ console.log("Passing Argument"); /* we passing argument in this line */
 console.log(square(5));
 /* in this we passing an expression eg. square() inside this expression we passing argument 5 as a value supply for the parameter */
 
+/* # Types of Functions */
+
+/* - Function Declaration or Named Functions */
+/* hoisted, reusable, cannot use as an expression */
+/* i.e */
+function funcDec() {
+  /* perform some tasks */
+  console.log("Function Declaration");
+}
+
+/* - Function Expression */
+/* anonymous, used as a variable, not hoisted like declarations */
+/* i.e */
+const funcExp = function () {
+  /* perform some tasks */
+  console.log("Function Expression");
+};
+
+/* - Arrow functions */
+/* short syntax, doesn't have this, arguments keywords, usefull for callbacks */
+/* i.e */
+const arrFunc = () => {
+  /* perform some tasks */
+  console.log("Arrow Function");
+};
+
+/* - Anonymous functions - functions without a name (used in function expression or callbacks) */
+/* i.e */
+/* function () {} - refer callbacks and function expression */
+
+/* - IIFE - Immediately Invoked Funtion Expression */
+/* invoked immediately */
+/* i.e */
+(function () {
+  /* perform some tasks */
+  console.log("IIFE");
+})();
+
+/* - Constructor Functions - refer Constructor Functions part */
+
+/* - Generator Function */
+/* -- these function allows you to pause and resume execution using the yield keyword
+   -- use function* - denotes its a generator function
+   -- use .next() to execute/resume functin until the next yield
+   -- while using next(), it return object with {value, done} - value (yielded value), done is a default property (either a true or false), when done its true the generator complete, for further calls its returns {value: undefined, done: true} refer below eg's
+   -- useful for lazy evaluations 
+*/
+/* i.e */
+function* genFun() {
+  yield 1;
+  yield 2;
+  return 3;
+}
+const gf = genFun();
+
+console.log("genFun", gf.next()); // yielded value 1 return {value: 3, done: false}
+console.log("genFun", gf.next()); // yielded value 2 return {value: 3, done: false}
+console.log("genFun", gf.next()); // yielded value 3 return {value: 3, done: true}
+console.log("genFun", gf.next()); // yielded value undefined return {value: undefined, done: true}
+
 /* # Type Conversion/Coercion - since js is dynamically language, so it can change any variables types at runtime */
 /* we have two main types Implicit, Explicit */
 
@@ -703,7 +763,8 @@ new Date(); /* returns current date as Date Object */
 /* 9. Spread Operator - 
       - the spread operator expands iterables like (arrays, objects, strings) into individual elements 
       - spread operator doesn't mutate the original object, it creates new one
-      - when property overlaps i.e age: 21, age: 24, last one wins and its make shallow copy 
+      - when property overlaps i.e age: 21, age: 24, last one wins and its make shallow copy
+      - when cloning/expanding how deeply the data is copied matters i.e spread only copies the top level properties, and nested objects/arrays are still referenced (not copied) - what does that mean, if we update the top-level properties it wont affect the original one, but if we update the nested properties it will affect the original one (because its copied by reference/memory location (heap)) 
 */
 /* # denoted as ... (three dots) */
 
@@ -759,6 +820,13 @@ try {
   }
 */
 
+/* # Types of Exceptions */
+/* - Reference Error = occurs when you use variable that hasn't been declared (undefined variables) */
+/* - Type Error = occurs when a value is not of the expected type (incorrect datatypes) */
+/* - Syntax Error = occurs when using incorrect syntax, these arise before the code runs (invalid syntax) */
+/* - Range Error - occurs when the value is not in set or range of allowed values (number out of range) */
+/* - Custom Error = manually throw custom errors (use throw new Error()) */
+
 /* 11. Destructuring - used to unpack/extract values from arrays / properties from object to a distinct variables */
 
 /* with arrays */
@@ -797,6 +865,117 @@ const {
 };
 
 console.log("nested destructuring", email);
+
+/* 12. GC (Garbage Collector) */
+/* 
+  - js has automatic memory management, we dont need to manually allocate or free up memory, GC will handles automatically under the hood
+  - GC, more powerfull for Non-primitives because these types stored by reference/memory location (heap)
+  - What GC will do? - taking care of cleaning un-used or un-reachable varibales (applicable for all datatypes, but play a big role in reference types)
+*/
+
+/* 13. Template Literals - introduced in ES6 uses `` backticks for multi-line strings, string interpolation, expression embedding */
+/* i.e */
+let temLit = `Patience and Peace`; /* default */
+let temLit1 = `Patience
+               And 
+               Peace`; /* multi-line strings */
+let temLit2 = `${temLit}`; /* interpolation */
+
+/* 14. Deep vs Shallow Copy - when you copy object or array, how deeply the data is copied that matters the most. */
+
+/* # Shallow Copy */
+/* 
+  - copies only top-level properties
+  - nested objects/arrays are still referenced (not copied)
+*/
+/* i.e */
+let scOriginal = {
+  nickName: "god",
+  nested: {
+    color: "red",
+  },
+};
+console.log("scOriginal", scOriginal); /* here the color will changes to pink */
+
+let scCopy = { ...scOriginal };
+scCopy.nickName = "goddess";
+scCopy.nested.color =
+  "pink"; /* here it will affect the original one, this is shallow copy  */
+console.log("scCopy", scCopy);
+
+/* eg's of shallow
+      - Object.assing({}, obj)
+      - {...spread_operator}
+*/
+
+/* # Deep Copy */
+/* 
+  - copies everything recursively
+  - create entirely new instances of nested objects/arrays
+*/
+let dcOriginal = {
+  nickName: "god",
+  nested: {
+    color: "red",
+  },
+};
+console.log("dcOriginal", dcOriginal);
+
+let dcCopy = JSON.parse(
+  JSON.stringify(dcOriginal)
+); /* here its deep cloning/copy */
+dcCopy.nested.color = "pink"; /* here it wont affect the original one */
+console.log("dcCopy", dcCopy);
+
+/* eg's of deep
+      - JSON.parse
+      - structuredClone (built-in-method)
+      - lodash (library)
+*/
+
+/* 15. Strict Mode in Js - its a restricted variant of js, used to catch common coding mistakes */
+/* you can activate strict mode by "use strict"; at the top of your script or function */
+/* advantages:
+    - avoid silent js bugs
+    - more secure code
+*/
+
+/* 16. this keyword - this refer to the context in which a function is executed, its based on how the function is called, not based on where it is declared */
+/* i.e */
+
+/* global context */
+console.log("this", this); /* points window object */
+
+/* inside a function */
+function thisFun() {
+  console.log("this", this); /* points window object */
+}
+
+/* inside a function (in strict mode) */
+function thisFun() {
+  console.log("this", this); /* undefined */
+}
+
+/* inside a object */
+let thisObj = {
+  namee: "god",
+  nested: {
+    nickName: this.name /* points current object */,
+  },
+};
+
+/* event listeners */
+/* document.querySelector("button").addEventListener("click", function () {
+  console.log("this", this); // points current element
+}) */
+
+/* 17. Modules in js - modules allows you to split your codes into re-usable pieces */
+/* 
+how it works (key notes wwhile working with modules)
+  - export = expose those variables, functions from a file
+  - import = import to use those exported variables, functions in another file
+  - import must be at top-level, not inside loops/functions
+*/
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
