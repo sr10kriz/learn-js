@@ -115,6 +115,50 @@ This repository contains a high-level overview of essential JavaScript concepts 
 
 ---
 
+### ⚙️ Functions (In-Depth)
+
+- Named functions
+- Anonymous functions
+- Arrow functions
+- Function expressions
+- First-class & Higher-order functions
+- IIFE (Immediately Invoked Function Expressions)
+- Generator functions
+- Callback functions
+
+---
+
+### 🧠 Memory & Performance
+
+- Garbage Collection (GC)
+  - Mark-and-Sweep algorithm
+  - Applies to all non-primitive values (objects, arrays, functions)
+- Deep vs Shallow Copy
+  - `Object.assign()`, spread `...`, JSON techniques, lodash
+
+---
+
+### 📜 Strings & Templates
+
+- Template literals using backticks (`` ` ``)
+- Multi-line strings
+- Embedded expressions (`${}`)
+
+...
+
+### ⏱️ Asynchronous JavaScript
+
+- Synchronous vs Asynchronous
+- Event Loop
+- Call Stack
+- Callback Queue (Macrotask Queue)
+- Microtask Queue
+- Promises: `then`, `catch`, `finally`
+  - `Promise.all`, `Promise.race`, `Promise.allSettled`, `Promise.any`
+- `async` / `await`
+
+---
+
 ## 📚 Purpose
 
 Use this guide as a revision sheet before JavaScript technical rounds or as a structured reference while learning JavaScript.
