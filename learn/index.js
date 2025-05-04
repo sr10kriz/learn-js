@@ -83,7 +83,10 @@ function callShadow() {
 }
 callShadow();
 
-/* # Hoisting - hositing is nothing, the variaables we created in js, are hoisteed to the top the scope with their respective nature */
+/* # Hoisting
+    - the variables we created in js, are hoisted to the top the scope with their respective nature
+    - default behavior moving declarations (not initializations) to the top their respective scope (either functional or block scope) during the compilation phase
+*/
 /* i.e */
 function hois() {
   // console.log("hois", hois); /* here we got ReferenceError: Cannot access 'hois' before initialization, this hois in TDZ */
@@ -263,7 +266,7 @@ function funcDec() {
 }
 
 /* - Function Expression */
-/* anonymous, used as a variable, not hoisted like declarations */
+/* anonymous, used as a variable, not hoisted like declarations even with var as a keyword */
 /* i.e */
 const funcExp = function () {
   /* perform some tasks */
@@ -976,6 +979,231 @@ how it works (key notes wwhile working with modules)
   - import = import to use those exported variables, functions in another file
   - import must be at top-level, not inside loops/functions
 */
+
+/* 18. Event Loop */
+/* 
+  - since js is single-threaded scripting language, meaning it can do one thing/task at a time
+  - but you still see async behavior (like timers, api-calls, dom events) happening without blocking the page
+  - how? - achieved with help of Event Loop 
+*/
+
+/* # Key Components of Event Loop
+      1* call stack (all the functions)
+        - where all functions are pushed and popped
+        - it follows LIFO (last-in, first-out)
+        - only one function executes at a time
+
+      2* web apis / browser apis (async tasks are handled by web apis)
+        - provided by browser / node js i.e setTimeout, api-calls, dom events etc...
+        - they run outside the call stack, and hand control when ready
+
+      3* callback queue (task queue)
+        - stores async callbacks waiting to pushed into the call stack
+        - once the web apis complete it tasks, then it will put the callbacks in callback queue, if its a promise .then(), it will be moved to microtask queue
+        - it follow FIFO (first-in, first-out)
+
+      4* microtask queue
+        - higher priority than callback queue
+        - stores .then() from promises
+*/
+/* # visualized eg's, see below */
+console.log("Event Loop", "Starts"); // this will move to call-stack
+
+setTimeout(() => {
+  // this will move to web-apis, once its completed then moved to callback queue
+  console.log("Event Loop", "Callbacks");
+}, 2000);
+
+Promise.resolve().then(() => {
+  // this will move to the web-apis, once its completed then moved to micro task queue
+  console.log("Event Loop", "Promises");
+});
+
+console.log("Event Loop", "End"); // this will move to call-stack
+
+/* # output will be
+  - console.log("Event Loop", "Starts");
+  - console.log("Event Loop", "End");
+  - console.log("Event Loop", "Promises");
+  - console.log("Event Loop", "Callbacks");
+*/
+
+/* # Event Loop Understanding
+  - first call stack (all the functions pushed to call stack)
+  - second all the async behaviors are moved to web-apis 
+  - third if web-apis completed its task, then it will move to callback queue (if it is async callbacks then moved to callback queue, if it is promises from .then(), will moved to microtask queue)
+  - fourth if call stack is empty, then call stack give first priority to microtask queue (Promises), then callback queue (setTimeout())
+*/
+
+/* # Event Loop Cycle
+  - check call stack - if its empty, move to the next step
+  - empty all microtask queue - run all microtasks until its empty
+  - run one macrotask/callback queue - take the first task from callback queue and push to it to the call stack
+  - repeat the cycle from call stack...
+*/
+
+/* ref-links to see event loop in action 
+    - https://latentflip.com/loupe/?code=JC5vbignYnV0dG9uJywgJ2NsaWNrJywgZnVuY3Rpb24gb25DbGljaygpIHsKICAgIHNldFRpbWVvdXQoZnVuY3Rpb24gdGltZXIoKSB7CiAgICAgICAgY29uc29sZS5sb2coJ1lvdSBjbGlja2VkIHRoZSBidXR0b24hJyk7ICAgIAogICAgfSwgMjAwMCk7Cn0pOwoKY29uc29sZS5sb2coIkhpISIpOwoKc2V0VGltZW91dChmdW5jdGlvbiB0aW1lb3V0KCkgewogICAgY29uc29sZS5sb2coIkNsaWNrIHRoZSBidXR0b24hIik7Cn0sIDUwMDApOwoKY29uc29sZS5sb2coIldlbGNvbWUgdG8gbG91cGUuIik7!!!PGJ1dHRvbj5DbGljayBtZSE8L2J1dHRvbj4%3D
+*/
+
+/* 19. Synchronous vs asynchronous */
+
+/* synchronous
+    - tasks that are performed one at a time, in order
+    - each task wait for previous one to complete before executing
+    - i.e standing in a queue (first in, first out) (ssee below eg)
+*/
+console.log("sync", "1st");
+console.log("sync", "2nd");
+console.log("sync", "3rd");
+
+/* above will execute line by by (from top to bottom (in order)) */
+
+/* asynchronous
+    - tasks that do not wait for previous task to finish
+    - js hand over time consuming tasks i.e (api-calls, timers) to the browser or node js runtime, and continues running the rest of the code
+    - once the async task completes, then it will be queued via event loop (see below eg)
+    - i.e ordered food (food is preparing), but meanwhile eating starters
+    - setTimeout(), setInterval(), fetch(), XMLHttpRequest, promises (.then(), .catch()), async/await, event listeners 
+*/
+console.log("async", "1st");
+setTimeout(() => {
+  console.log("async", "timers");
+}, 2000);
+console.log("async", "2nd");
+
+/* 20. Callbacks Functions */
+/* - a callback is a function passed as an argument to another function, which is then invoked */
+function callBuckBeak(param, callback) {
+  console.log("callBuckBeak", param);
+  callback(param);
+}
+
+function callChildBuckBeak(param) {
+  console.log("callChildBuckBeak", param);
+}
+
+callBuckBeak("BuckBeak", callChildBuckBeak);
+
+/* # Named callbacks vs Anonymous callbacks */
+/* named callbacks */
+function done() {
+  console.log("named callback done");
+}
+setTimeout(done, 1000);
+
+/* anonymous callbacks */
+setTimeout(() => {
+  console.log("anonymous callback done");
+}, 1000);
+
+/* 21. Promises */
+/* 
+  - a promise is an object, that represents eventual completion or failure of a asynchronous function
+  - it acts as a placeholder for a value that will be known in the future
+  - promise has three states
+    1. pending - initial state, neither full-filled nor rejected
+    2. fulfilled - operation completed successfully
+    3. rejected - operation failed
+*/
+/* syntax with basic eg's */
+let promise = new Promise((resolve, reject) => {
+  let success = false;
+  if (success) resolve("operation done");
+  reject("operation failed");
+});
+
+promise
+  .then((res) => console.log("promise resolve res", res))
+  .catch((res) => console.log("promise reject res", res));
+
+/* 
+  - resolve() = is called when the async operation succeeds
+  - reject() = is called when the async operation fails
+  - .then() = handles resolved values
+  - .catch() = handles rejected/errors values
+  - finally() = runs no matter what, usefull for clean-ups
+*/
+
+/* # Chaining Promises
+    new Promise((resolve, reject) => {
+      resolve(10);
+    }).then(num => num * 2).then(num => num + 5).then(final => console.log(final)); // logs: 25
+*/
+
+/* # Promise.all - runs multiple promises in parallel, resolves when all completes, if one fails, then .all() fails */
+/* syntax */
+Promise.all([Promise.resolve(1), Promise.resolve(2), Promise.resolve(3)]).then(
+  (res) => console.log("promise all res", res) // logs [1,2,3]
+);
+
+/* # Promise.race - returns result of a first settled (resolved/rejected) promise */
+/* syntax */
+Promise.race([
+  new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve("2secs");
+    }, 2000);
+  }),
+  new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve("1secs");
+    }, 1000);
+  }),
+]).then((res) => console.log("promise race res", res));
+
+/* # Promise.allSettled - when you want to wait for all promises to settled (regardless of resolve or reject) and get status of each */
+/* syntax */
+Promise.allSettled([
+  Promise.resolve(1),
+  Promise.reject(2),
+  Promise.resolve(3),
+  Promise.reject(4),
+]).then((res) => console.log("promise allsettled res", res));
+/* 
+  - here above it returns array of promises/objects, 
+  - resolved promises have {status: 'fulfilled', value: 1 (resolved value)}
+  - rejected promises have {status: 'rejected', reason: 2 (rejected value)}
+*/
+
+/* # Promise.any - returns first resolved promise and ignores all the rejections */
+/* syntax */
+Promise.any([
+  Promise.reject(4),
+  Promise.resolve(3),
+  Promise.reject(2),
+  Promise.resolve(1),
+]).then((res) => console.log("promise any res", res));
+/*
+  - here it only returns the first resolved promise i.e 3
+  - ignores all the rejections as well as next resolved promises also
+*/
+
+/* 22. Async / Await */
+/* - async/await is a cleaner way to handle asynchronous operations in js */
+/* - async = is a keyword is used to declare a function that always returns a promise */
+/* - await = is used inside async functions only to pause execution until a promise rejects/resolves */
+/* eg's */
+
+function delayAsync(ms) {
+  return new Promise((resolve, reject) => setTimeout(resolve, ms));
+}
+
+async function asyncFunc() {
+  console.log("async Start");
+
+  await delayAsync(3000);
+  console.log("async delay 3secs");
+
+  await delayAsync(1000);
+  console.log("async delay 1secs");
+
+  return "async Done!";
+}
+
+asyncFunc().then((res) => console.log("async await", res));
+
+/* while using async/await use always try...catch... instead of .then() and .catch() */
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
