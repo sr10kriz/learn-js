@@ -1,5 +1,5 @@
 /* 1. Basics in Js */
-/* Used to create more dynamic and user interactive websites, and its a dynamically types language */
+/* Used to create dynamic and more user interactive websites, and its a dynamically typed language */
 /* i.e */
 let jsD = 10;
 console.log("jsD", jsD);
@@ -77,13 +77,13 @@ function callShadow() {
   /* 
      - here it will shadows the outer varible, but takes and logs the block scope variable
      - here the shadow variable will hoisted to the top the function and initialized as undefined, so the log will be NaN (undefined + 5)
-     - at the if we shadow with let, we got ReferenceError: Cannot access 'shadow' before initialization
+     - if we shadow with let, we got ReferenceError: Cannot access 'shadow' before initialization
     */
   console.log("shadow", shadow);
 }
 callShadow();
 
-/* # Hoisting - var declarations keywords are hoisted to the top of their scope (but not initialized) leads to bugs/unexpected behaviours */
+/* # Hoisting - hositing is nothing, the variaables we created in js, are hoisteed to the top the scope with their respective nature */
 /* i.e */
 function hois() {
   // console.log("hois", hois); /* here we got ReferenceError: Cannot access 'hois' before initialization, this hois in TDZ */
@@ -93,7 +93,7 @@ function hois() {
 hois();
 
 /* # Temporal Dead Zone (TDZ) 
-    - only applicable for let & const
+    - only applicable for let & const keywords
     - its a time between where a let or const variable is delcared or initialized 
     - A variable is in the TDZ from the start of its scope until it is declared
     - Accessing it during this zone results in an error.
@@ -101,7 +101,7 @@ hois();
 
 /* i.e
     {
-      // TDZ is start from here for varible with let and const
+      - TDZ is start from here for varible with let and const keyword
       console.log("tdz", tdz); this leads to ReferenceError: Cannot access 'tdz' before initialization, because its in dead zone
       let tdz = "tdz";
     }
@@ -140,9 +140,9 @@ console.log("cur", cur("Sri")("Srii"));
 /* 2. Datatypes */
 /* In js we have two types of Datatypes Primitive (value types), Non-Primitive (reference types) */
 
-/* # Primitives are copied by Value - value type the value will be stored only inside of this varible when we copy one variable to another the copied variable is passed to another varible | they are completely independent of each other */
+/* # Primitives are copied by Value - value type, the value will be stored only inside of this varible when we copy one variable to another the copied variable is passed to another varible | they are completely independent of each other */
 
-/* # Non-Primitives are copied by their reference/memory location, reference types the value will be stored in some memory location and when we copy one variable to another, the value that is stored in memory location will be copied to another variable. if we modify any one variable that will be affect another if we copy the variable to one another
+/* # Non-Primitives are copied by their reference/memory location, reference types the value will be stored in some memory location and when we copy one variable to another, the value that is stored in memory location will be copied to another variable. if we modify any one variable that will be affect another too
  */
 
 /* # Primitives types or value types | string | int(number) | BigInt | boolean | undefined | null */
@@ -211,7 +211,7 @@ let selectedName = "Josh Portialla";
 person["name"] = selectedName;
 console.log(person["name"]);
 
-/* # Arrays (arrays is a data structure that represents list of items/data with any any datatypes) */
+/* # Arrays (arrays is a data structure that represents list of items/data with any datatypes) */
 /* arrays literal syntax [..........] */
 
 let selectedProducts = []; // set selectedProducts variable as array
@@ -252,7 +252,7 @@ console.log("Passing Argument"); /* we passing argument in this line */
 console.log(square(5));
 /* in this we passing an expression eg. square() inside this expression we passing argument 5 as a value supply for the parameter */
 
-/* # Type Conversion - since js is dynamically language, so it can change any variables types at runtime */
+/* # Type Conversion/Coercion - since js is dynamically language, so it can change any variables types at runtime */
 /* we have two main types Implicit, Explicit */
 
 /* # Implicit Type Conversion - Js automatically converts types when needed (js uses context operator to choose this conversion) */
@@ -527,7 +527,7 @@ for (let index in colors) {
 /* # for-of loops only designed to iterate arrays only */
 /* # (for-of) mainly used to iterate elements or items in an array */
 for (let [i, color] of colors.entries()) {
-  /* always entries() to get index as well as the values */
+  /* always use entries() to get index as well as the values */
   console.log("for-off with array index", i);
   console.log("for-off with array", color);
 }
@@ -545,7 +545,7 @@ breakMe: for (let i = 0; i < 2; i++) {
   }
 }
 
-/* # Objects ( mainly objects are collections of key value pairs {property : values} we want to encapsulate them inside of an object] ) */
+/* # Objects ( mainly objects are collections of key value pairs {property: values} we want to encapsulate them inside of an object] ) */
 /* why we create objects coz the varibles or properties we declare are highlt related to each other */
 /* eg if a circle contains so many properties (below) */
 
@@ -574,7 +574,7 @@ breakMe: for (let i = 0; i < 2; i++) {
 //     }
 // };
 
-/* # mainly purpose of an object is to group highly relates variables */
+/* # mainly purpose of an object is to group highly relates variables (details into a collection kindof) */
 
 // function drawCircle() {} /* these functions are highly related to object circle so instead of declaring stand-alone functions ... */
 // function moveCircle() {} /* we declare functions inside the objects (below) */
@@ -738,7 +738,7 @@ console.log("spreadObj Merge", {
 let spreadStr = "BELOVED";
 console.log("spreadStr", [...spreadStr]);
 
-/* 10. Exception Handling with try and catch, finally - used to handle runtime errors without crashing the application */
+/* 10. Exception Handling with try and catch, finally these are used to handle runtime errors without crashing the application */
 /* syntax... */
 try {
   // in try syntax errors are not caught, only runtime errors will be caught
@@ -759,7 +759,7 @@ try {
   }
 */
 
-/* 11. Destructuring - used to unpack values from arrays / properties from object to a distinct variables */
+/* 11. Destructuring - used to unpack/extract values from arrays / properties from object to a distinct variables */
 
 /* with arrays */
 let [da1, da2, da3] = [1, 2, 3];
