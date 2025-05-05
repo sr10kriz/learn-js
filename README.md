@@ -159,6 +159,23 @@ This repository contains a high-level overview of essential JavaScript concepts 
 
 ---
 
+### ⚡ Performance Optimization
+
+- Debouncing
+- Throttling
+
+---
+
+### 🌐 DOM
+
+- DOM Manipulation
+- Event Handling
+- Event Delegation
+- Timers and Animation (`setTimeout`, `setInterval`, `clearTimeout`, `clearInterval`)
+- LocalStorage / SessionStorage
+
+---
+
 ## 📚 Purpose
 
 Use this guide as a revision sheet before JavaScript technical rounds or as a structured reference while learning JavaScript.
