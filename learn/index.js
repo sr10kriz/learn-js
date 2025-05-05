@@ -1205,6 +1205,130 @@ asyncFunc().then((res) => console.log("async await", res));
 
 /* while using async/await use always try...catch... instead of .then() and .catch() */
 
+/* 23. Debouncing, Throttling */
+
+/* # Debouncing
+    - a function only called after a certain period of inactivity
+    - eg: someone knocking the door, you going to open the door once they stop knocking the door for 3secs
+*/
+
+/* # Throttling
+    - a function is executed in a specified time interval, no matter how many times you trigger the event
+    - eg: you decide to open th every 3secs, no matter how many times they knock, after 3secs you ready to open again
+*/
+
+/* 24. DOM - Document Object Model
+        - mainly focus on the html content, each and every element represented as node (tree of nodes)
+*/
+
+/* # single element selection */
+/* 
+  - document.getElementById('id_name');
+  - document.querySelector('#id_name' or '.class_name') ;
+*/
+
+/* # multiple element selection */
+/* 
+  - document.getElementsByClassName('class_name');
+  - document.querySelectorAll('.class_name');
+  - document.getElementsByTagName('div');
+*/
+
+/* # manipulating elements */
+/* 
+  - element.textContent = "peace";
+  - element.innerHTML = "<p>peace</p>"
+  - element.style.color = "white";
+     etc...
+*/
+
+/* # attributes */
+/* 
+  - element.setAttribute("href", "https://google.com");
+  - element.getAttribute("href");
+  - element.removeAttribute("disabled");
+*/
+
+/* # Creating and Removing elements */
+/* 
+  let newDiv = document.createElement("div");
+  newDiv.textContent = "peace";
+  document.body.appendChild(newDiv);
+
+  element.remove() // to remove a element
+*/
+
+/* # Event Handlers */
+/* 
+  button.addEventListener('click', function () {
+    // perform some task
+  })
+*/
+
+/* # Event Delegation
+  - add a single event listener to parent element instead oof addind each of the child elements
+  - usefull dynamic addition of the child elements
+
+  document.getElementById("peace").addEventListener('click', function (event) {
+    if (event.target.tagName == "LI") {
+      // perform some task
+    }
+  })
+*/
+
+/* 25. LocalStorage, SessionStorage */
+
+/* # Local Storage
+  - data persists even after page reload or browser restart
+  - shared across all the tabs/windows of same origin
+  - memory limit: 5 to 10 mb
+  
+  - setItem = localStorage.setItem("name_of_the_property", "value")
+  - getItem = localStorage.getItem("name_of_the_property")
+  - removeItem = localStorage.removeItem("name_of_the_property")
+*/
+
+/* # Session Storage
+  - data is cleared when tab/browser closed
+  - specific to a tab/window
+  - memory limit: 5 to 10 mb
+
+  - setItem = sessionStorage.setItem("name_of_the_property", "value")
+  - getItem = sessionStorage.getItem("name_of_the_property")
+  - removeItem = sessionStorage.clear()
+*/
+
+/* 26. Timers (setTimeout, setInterval, clearTimeout, clearInterval) */
+/* # setTimeout - runs a function once after a delay */
+/* syntax - setTimeout(callbackfunction, delayInMs, ...agruments (if any)) */
+setTimeout(
+  (param) => {
+    console.log(`perform some tasks setTimeout ${param}`);
+  },
+  1000,
+  "PEACE"
+);
+
+/* # clearTimout - stops/prevent the setTimeout before it executes */
+let timerI = setTimeout(() => {
+  console.log("try to prevent me");
+}, 2000);
+
+clearTimeout(timerI); // prevents/stops the above timer
+
+/* # setInterval - runs a function repeatedly at intervals */
+/* syntax - setInterval(callbackfunction, delayInMs, ...arguments (if any)) */
+let timerII = setInterval(
+  (param) => {
+    console.log(`perform some tasks setInterval ${param}`);
+  },
+  1000,
+  "PEACEE"
+);
+
+/* # clearInterval - stops/prevent the above interval */
+clearInterval(timerII);
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /* train some logics section */
