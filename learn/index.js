@@ -1329,6 +1329,35 @@ let timerII = setInterval(
 /* # clearInterval - stops/prevent the above interval */
 clearInterval(timerII);
 
+/* 27. Optional Chaining
+    - avoids run-time errors while trying to access deeply nested properties, that may or may not be exists
+    - we can use this methods also
+    - syntax: ?.
+*/
+/* without optional chaining */
+let optCha = {};
+console.log(
+  "optionalChaining",
+  optCha.name
+); /* leads to app crash/sometimes leads to unexpected behavior */
+
+/* with optional chaining */
+console.log(
+  "optionalChaining",
+  optCha?.name
+); /* return undefined, no app crashes, silently ignores the error */
+
+/* 28. Nullish Coalescing Operator 
+    - provide default value if left-hand side is null or undefined (not falsy like 0, false, "")
+    - syntax: ??, ||
+*/
+/* use case */
+let nullCoal = null;
+let nullCoal1 = 0;
+console.log("nullish coalscing", nullCoal ?? "peace"); /* logs peace */
+console.log("nullish coalscing1", nullCoal1 || "peace"); /* logs peace */
+console.log("nullish coalscing1", nullCoal1 ?? "peace"); /* logs 0 */
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /* train some logics section */
