@@ -176,6 +176,18 @@ This repository contains a high-level overview of essential JavaScript concepts 
 
 ---
 
+### ❓ Optional Chaining & Nullish Coalescing
+
+- **Optional Chaining (`?.`)**:  
+  Safely access deeply nested properties without throwing an error if a reference is `null` or `undefined`.  
+  Example: `user?.profile?.email`
+
+- **Nullish Coalescing (`??`)**:  
+  Returns the right-hand operand only when the left-hand operand is `null` or `undefined` (unlike `||`, which also considers `0`, `''`, or `false` as falsy).  
+  Example: `value ?? 'default'`
+
+---
+
 ## 📚 Purpose
 
 Use this guide as a revision sheet before JavaScript technical rounds or as a structured reference while learning JavaScript.
