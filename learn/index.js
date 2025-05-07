@@ -1358,6 +1358,19 @@ console.log("nullish coalscing", nullCoal ?? "peace"); /* logs peace */
 console.log("nullish coalscing1", nullCoal1 || "peace"); /* logs peace */
 console.log("nullish coalscing1", nullCoal1 ?? "peace"); /* logs 0 */
 
+/* 29. Set - unique collection of values
+    - a Set stores unique collection of values (no duplicates allowed)
+*/
+let set = new Set();
+set.add("abc");
+set.add(1);
+set.add([1, 2, 3]);
+set.add({ prop1: "peace", prop2: "patience" });
+set.add(null);
+set.add(true);
+
+console.log("set", set);
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /* train some logics section */
