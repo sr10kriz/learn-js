@@ -1636,6 +1636,144 @@ console.log("object seal remove", delete objSeal.b); // false
 console.log("object seal modifications", (objSeal.b = "BB")); // modifications made
 console.log("object seal", objSeal); // { a: "A", b: "BB" }
 
+/* # Array Methods */
+
+/* - Array.isArray(arr) - checks if the variable is an array, return boolean */
+console.log("array isArray", Array.isArray([1, 2, 3])); // true
+console.log("array isArray", Array.isArray("hello")); // false
+
+/* - new Array(length) - created new array with length (but with empty slots) */
+console.log("array new Array", new Array(5)); // [empty x 5] and its length 5
+
+/* - foreach((ele,index,array),thisarg) - executes a function for each element */
+[1, 2, 3].forEach((ele) => console.log("array foreach", ele));
+
+/* - map((ele,index,array),thisarg) - transforms(manipulate if neccessary) elements, return new array */
+[1, 2, 3].map((ele) => console.log("array map", ele * ele));
+
+/* - filter((ele,index,array),thisarg) - filter values that matches a condition, return filtered array */
+console.log(
+  "array filter",
+  [1, 2, 3].filter((ele) => ele % 2 == 0)
+);
+
+/* - reduce((accumulator,currentvalue,index,array),initialvalue) - reduce array to a single value 
+    - accumulator - it holds the result of each iteration, in initial iteration accumulator == initialvalue
+    - currentvalue - value of current iteration
+    - index - index of current iteration
+*/
+console.log(
+  "array reduce",
+  [1, 2, 3].reduce((acc, curr, i) => acc + curr, 0)
+); // 6
+
+console.log(
+  "array reduce",
+  [1, 2, 3].reduce((acc, curr, i) => acc + curr, 100)
+); // 106
+
+console.log(
+  "array reduce max",
+  [4, 16, 7, 8, 1].reduce((acc, curr, i) => (curr > acc ? curr : acc), 4)
+); // 16
+
+/* - find((ele), thisarg) - return first matching element */
+console.log(
+  "array find",
+  [1, 2, 3].find((ele) => ele > 2)
+); // 3
+
+/* - some((ele)) - return boolean if any of the condition satisfies */
+console.log(
+  "array some",
+  [1, 2, 3].some((ele) => ele > 2)
+); // true
+
+/* - every((ele)) - return boolean if all the elements passes it condition */
+console.log(
+  "array every",
+  [1, 2, 3].every((ele) => ele > 0)
+); // true
+
+/* - findIndex((ele)) - return the index of the first element passed it condition */
+console.log(
+  "array findIndex",
+  [4, 6, 8].findIndex((ele) => ele > 4)
+); // 1
+
+/* - push() - add one or more element to the end of the array */
+let arrPush1 = [1, 2, 3];
+let arrPush2 = [1, 2, 3];
+arrPush1.push(4);
+arrPush2.push(4, 5);
+console.log("array push", arrPush1); // [1,2,3,4]
+console.log("array push", arrPush2); // [1,2,3,4,5]
+
+/* - pop() - removes the last element, return the updated array */
+let arrPop = [1, 2, 3];
+arrPop.pop();
+console.log("array pop", arrPop); // [1,2]
+
+/* - shift() - removes first element, return the updated array */
+let arrShift = [1, 2, 3];
+arrShift.shift();
+console.log("array shift", arrShift); // [2,3]
+
+/* - unshift() - add one or more elements to the beginning of the array */
+let arrUnShift = [2, 3];
+arrUnShift.unshift(1, 1);
+console.log("array unshift", arrUnShift); // [1,1,2,3]
+
+/* - concat() - merge arrays and return updated array */
+let arrCon1 = [1, 2, 3];
+let arrCon2 = [4, 5, 6];
+console.log("array concat", arrCon1.concat(arrCon2));
+
+/* - join(separator) - return a string, with array elements joined */
+let arrJoin = ["a", "b", "c", "d"];
+console.log("array join", arrJoin.join("-")); // a-b-c-d
+
+/* - slice(start,end) - extracts portion of an array, return a shallow copy from start to end (end param index always not taken to consideration), doesn't modifies original array */
+console.log("array slice", [1, 2, 3, 4].slice(1, 3)); // [2,3]
+
+/* - splice(start, deletecount, item1, item2, ...itemsN) - adds/remove/replaces elements in an array, modifies the original array 
+    - start - start position
+    - deletecount - if you going to remove an element 
+    - item1 - to add element (value)
+    - return removed elements
+*/
+console.log("array splice remove", [1, 2, 3, 4, 5].splice(0, 2)); // [1,2]
+console.log("array splice add", [10, 20, 30].splice(3, 0, 40, 50)); // [10,20,30,40,50] instead of splice return [], coz splice always returns removed elements, in this no elements were removed so only we got the [] array, but it affect the original array seee below eg
+
+let arrSplice = [10, 20, 30];
+console.log("array splice arrSplice", arrSplice.splice(3, 0, 40, 50)); // []
+console.log("array splice arrSplice", arrSplice); // [10,20,30,40,50] here we got the expected output
+
+/* - indexOf(value) - return first index of value, -1 if not found */
+console.log("array indexOf", [10, 20, 30, 20].indexOf(20)); // 1
+
+/* - lastIndexOf(value) - return last index of value */
+console.log("array lastIndexOf", [10, 20, 30, 20].lastIndexOf(20)); // 3
+
+/* - includes(value) - check if array contains the value */
+console.log("array includes", [1, 2, 3].includes(2)); // true
+
+/* - sort() - sorts the array */
+console.log("array sort", [2, 1, 3].sort()); // [1,2,3]
+console.log("array sort", ["c", "d", "b"].sort()); // ['b','c','d']
+
+/* - toSorted() - sorts the array (non-mutating version, sorts and return as new array, without affecting original one) */
+
+/* - reverse() - reverse the array in place */
+console.log("array reverse", [1, 3, 4, 2].reverse()); // [2,4,3,1]
+
+/* - toReversed() - reverse the array in place (non-mutating version, reverses and return as new array, without affecting original one) */
+
+/* - flat(depth) - flattens nested array upto depth levels */
+console.log("array flat", [1, [2, [3]]].flat(2)); // [1,2,3]
+
+/* - flatMap((ele)) - combines map() and flat() */
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /* train some logics section */
