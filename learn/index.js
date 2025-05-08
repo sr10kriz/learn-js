@@ -360,6 +360,21 @@ console.log("Boolean", Boolean("hello")); /* logs true */
 console.log("Boolean", Boolean([])); /* logs true */
 console.log("Boolean", Boolean(null)); /* logs false */
 
+/* # !!value - mean? - used to convert any value to boolean type
+    - it is two not operators (!) applied in sequence
+    - the first ! converts the value and inverts it
+    - the second ! inverts it again (giving you the actual boolean equivalent to the value)
+*/
+/* eg 1 */
+let doubleEE = "peace"; // truthy
+console.log("doubleEE", !doubleEE); // false
+console.log("doubleEE", !!doubleEE); // true - double negation brings it back to the actual boolean
+
+/* eg 2 */
+let doubleEE2 = 0; // false
+console.log("doubleEE2", !doubleEE2); // true, coz its a fasly statement
+console.log("doubleEE2", !!doubleEE2); // false - double negation brings it back to the actual boolean
+
 /* # Equality Comparison */
 /* == double equals denotes LOOSE equality (check only values) */
 /* === triple equals denotes STRICT equality (check only values as well as datatypes) */
@@ -1358,18 +1373,268 @@ console.log("nullish coalscing", nullCoal ?? "peace"); /* logs peace */
 console.log("nullish coalscing1", nullCoal1 || "peace"); /* logs peace */
 console.log("nullish coalscing1", nullCoal1 ?? "peace"); /* logs 0 */
 
-/* 29. Set - unique collection of values
-    - a Set stores unique collection of values (no duplicates allowed)
+/* 29. Set - unique collection of values (only stores values)
+    - Set is iterable object
+    - a Set stores unique collection of values with any datatype whether primitive or non-primitive - no duplicates allowed
 */
-let set = new Set();
-set.add("abc");
-set.add(1);
-set.add([1, 2, 3]);
-set.add({ prop1: "peace", prop2: "patience" });
-set.add(null);
-set.add(true);
-
+let set = new Set([1, 2, 3, 4, 4, 5]);
 console.log("set", set);
+
+/* # methods and properties of Set
+    - set.add(value) = adds a new element (any datatype)
+    - set.delete(value) = removes a element
+    - set.has(value) = returns true if has the mentioned value
+    - set.clear = removes all elements
+    - set.size = to check Set length/size (number of elements)
+*/
+
+/* # eg */
+let newSet = new Set();
+
+let setArr = [1, 2, 3, 4, 4];
+let setObj = { asd: "asd" };
+
+newSet.add("abc");
+newSet.add(123);
+newSet.add(setArr);
+newSet.add(setObj);
+newSet.add(() => console.log("newSet function"));
+
+console.log("newSet.size", newSet.size);
+console.log("newSet.has", newSet.has(setArr));
+console.log("newSet.delete", newSet.delete(setArr));
+// console.log("newSet.clear", newSet.clear()); /* will empty the set */
+
+console.log("newSet", newSet);
+
+/* 30. Map - collection of key-value pairs (only stores key-value pairs)
+    - Map is iterable object
+    - keys can be any datatype (not just strings like in objects)
+    - no duplicates allowed
+*/
+
+let mapp = new Map([
+  ["name", "sri"],
+  [123, "integers"],
+  [true, "yes"],
+  [{ true: "yes" }, "object"],
+  [[{ true: "yes" }, { true: "no" }], "arrayOfObjects"],
+]);
+console.log("mapp", mapp);
+
+/* methods and properties of Map
+  - map.set("key", "value") = to set a value to map
+  - map.get("key") = to get a value from map
+  - map.delete(key) = removes a element
+  - map.has(key) = returns true if has the mentioned value
+  - map.clear = removes all elements
+  - map.size = to check Map length/size (number of elements)
+*/
+
+let newMap = new Map();
+
+let mapArr = [1, 2, 3, 4, 4];
+let mapObj = { asd: "asd" };
+let mapFunc = () => console.log("mapFunc");
+
+newMap.set("string", "messi");
+newMap.set(1010, 10);
+newMap.set(true, false);
+newMap.set(mapArr, "mapArr");
+newMap.set(mapObj, "mapObj");
+newMap.set(mapFunc, "mapFunc");
+
+console.log("newMap get", newMap.get(mapFunc));
+console.log("newMap has", newMap.has(mapFunc));
+console.log("newMap delete", newMap.delete(mapFunc));
+// console.log("newMap.clear", newMap.clear()); /* will empty the map */
+
+console.log("newMap", newMap);
+
+/* 
+  - to iterate over Set or Map use below
+  use .keys() - for keys, 
+  use .values() - for values, 
+  use .entries() - for entries, 
+*/
+
+/* 31. Built-in-methods */
+
+/* # String Methods */
+
+/* - length - returns the result of a string */
+console.log("string length", "peace+".length); // 6
+
+/* - includes(substring) - checks if a substring exists in a string (case-sensitive) */
+console.log("string includes", "JavaScript".includes("Script")); // true
+console.log("string includes", "JavaScript".includes("script")); // false
+
+/* - indexof(substring) / lastIndexOf(substring) - returns the indexof first/last occurance of a substring, -1 if not found */
+console.log("string indexOf", "peace+".indexOf("e")); // 1
+console.log("string lastIndexOf", "peace+".lastIndexOf("e")); // 4
+
+/* - slice(start,end) - extracts part of a string (doesn't affect original) */
+console.log(
+  "string slice",
+  "messri".slice(3) // sri
+); /* end param index always not taken to consideration */
+
+/* - substring(start,end) - similar to slice but doesn't support negative index */
+console.log(
+  "string substring",
+  "messri".substring(0, 3) // mes
+); /* end param index always not taken to consideration */
+
+/* - substr(start,length) - extracts a substring with specified length */
+console.log("string substr", "messri".substr(3)); // sri
+
+/* - replace(search,replacement) - replace first match (can use regex for global replacement) */
+console.log("string replace", "messri".replace("mes", "messi-")); // messi-sri
+
+/* - toUpperCase() / toLowerCase() */
+console.log("string toUpperCase", "messri".toUpperCase()); // MESSRI
+console.log("string toLowerCase", "MESSRI".toLowerCase()); // messri
+
+/* - trim(), trimStart(), trimEnd() - removes whitespaces */
+console.log("string trim", "   messri   ".trim()); // messri
+console.log("string trimStart", "   messri".trimStart()); // messri
+console.log("string trimEnd", "messri   ".trimEnd()); // messri
+
+/* - split(separator) - splits string to an array */
+console.log("string split", "peace,patience,comprehension".split(",")); // ["peace","patience","comprehension"]
+
+/* - concat(string1,string2,string3...) - joins two or more strings (like + operator) */
+console.log("string concat", "mess".concat("", "sri")); // messri
+
+/* - startsWith() / endsWith() - checks if a string starts or ends with given substring */
+console.log("string endsWtih", "peace".endsWith("e")); // true
+console.log("string startsWtih", "peace".startsWith("p")); // true
+
+/* - match(regex) / matchAll(regex) - return matches using regular expressions */
+console.log("string match", "abc123".match(/\d+/)); // ["123"]
+
+/* # Number Methods */
+
+/* - toFixed(n) - rounds to n digits after decimal */
+console.log("int toFixed", (18.231209).toFixed(2)); // 18.23
+
+/* - toPrecision(n) - formats number with total n digits */
+console.log("int toPrecision", (18.231209).toPrecision(5)); // 18.231
+
+/* - toString([radix]) - converts number to a string */
+console.log("int toString", (18.231209).toString(16)); // 12.3b3083558a76
+
+/* - valueOf() - returns primitive value */
+console.log("int valueOf", (18.231209).valueOf()); // 18.231209
+
+/* - toExponential(n) - returns exponential notation */
+console.log("int toExponential", (18.231209).toExponential(1)); // 1.8e+1
+
+/* # Number Functions */
+
+/* - isInteger(value) - checks if the value is an integer */
+console.log("Number isInteger", Number.isInteger(5)); // true
+console.log("Number isInteger", Number.isInteger(5.5)); // false
+
+/* - isNaN(value) - checks if its a NaN value and typeof Number */
+console.log("Number isNaN", Number.isNaN(NaN)); // true
+console.log("Number isNaN", Number.isNaN("NaN")); // false
+
+/* - isFinite(value) - checks if its a finite number (not infinity, -infinity, NaN) */
+console.log("Number isFinite", Number.isFinite(100)); // true
+console.log("Number isFinite", Number.isFinite(Infinity)); // false
+console.log("Number isFinite", Number.isFinite(NaN)); // false
+
+/* - parseInt() / parseFloat() - convert string to numbers */
+console.log("Number parseInt", Number.parseInt("42")); // 42
+console.log("Number parseFloat", Number.parseFloat("42.34")); // 42.34
+
+/* # Constants on Number */
+console.log("Number Constants Max", Number.MAX_VALUE);
+console.log("Number Constants Min", Number.MIN_VALUE);
+console.log("Number Constants Positive", Number.POSITIVE_INFINITY);
+console.log("Number Constants Negative", Number.NEGATIVE_INFINITY);
+console.log("Number Constants NaN", Number.NaN);
+
+/* # Math object - its a built-in object provides mathematical constants and functions */
+
+/* Math rounding utilities */
+/* - Math.round(x) - rounds to nearest integer */
+console.log("Math round", Math.round(4.2)); // 4
+console.log("Math round", Math.round(4.5)); // 5
+
+/* - Math.floor(x) - rounds down to nearest integer */
+console.log("Math floor", Math.floor(4.2)); // 4
+console.log("Math floor", Math.floor(4.7)); // 4
+
+/* - Math.ceil(x) - rounds up to nearest integer */
+console.log("Math ceil", Math.ceil(4.7)); // 5
+console.log("Math ceil", Math.ceil(4.2)); // 5
+
+/* - Math.trunc(X) - removes decimal part */
+console.log("Math trunc", Math.trunc(4.2)); // 4
+console.log("Math trunc", Math.trunc(5.1)); // 5
+
+/* Math arithmetic utilities */
+/* - Math.abs(x) - absolute value */
+console.log("Math abs", Math.abs(-6)); // 6
+
+/* - Math.pow(x,y) - exponentiation (x to the power of y) */
+console.log("Math pow", Math.pow(2, 3)); // 2 to the power of 3, 2cube 8
+
+/* - Math.sqrt(x) - square root */
+console.log("Math sqrt", Math.sqrt(16)); // 4
+
+/* - Math.cbrt(x) - cube root */
+console.log("Math cbrt", Math.cbrt(8)); // 2
+
+/* - Math.min(...array) - find the min value */
+console.log("Math min", Math.min(5, 10, 100, 0, -1, 1)); // -1
+
+/* - Math.max(...array) - find the max value */
+console.log("Math max", Math.max(5, 10, 100, 0, -1, 1)); // 100
+
+/* - Math.random() - returns a float between 0 to 1 */
+console.log("Math random", Math.random()); // 0.839761388358438
+
+/* # Object methods */
+
+/* - Object.keys(obj) - returns array of keys (properties of object) of the object */
+let objKeys = { a: "A", b: "B", c: "C" };
+console.log("object keys", Object.keys(objKeys)); // [a,b,c]
+
+/* - Object.values(obj) - returns array of values of the object */
+console.log("object values", Object.values(objKeys)); // [A,B,C]
+
+/* - Object.entries(obj) - returns array of [key,value] of the object */
+console.log("object entries", Object.entries(objKeys)); // [['a','A'], ['b','B'],['c','C']]
+
+/* - Object.fromEntries() - reverse of Object.entries() */
+let objFromEnt = [
+  ["a", "A"],
+  ["b", "B"],
+  ["c", "C"],
+];
+console.log("object from entries", Object.fromEntries(objFromEnt)); // { a: "A", b: "B", c: "C" }
+
+/* - Object.assign(target, ...soruces) - copies all enumerable own properties from one or more source objects to a target object */
+let obj1 = { a: "A", b: "B" },
+  obj2 = { c: "C", d: "D" };
+console.log("object assign", Object.assign({}, obj1, obj2)); // { a: "A", b: "B", c: "C", d: "D" }
+
+/* - Object.freeze(obj) - makes objet immutable (can't add, edit, remove) */
+let objFreeze = { a: "A", b: "B" };
+Object.freeze(objFreeze); // object freezed can't add, edit, remove
+console.log("object freeze", (objFreeze.c = "C")); // won't through any errors
+console.log("object freeze", objFreeze); // { a: "A", b: "B" }
+
+/* - Object.seal(obj) - prevents adding/removing properties, but modifications allowed */
+let objSeal = { a: "A", b: "B" };
+Object.seal(objSeal); // object sealed can't add,remove, but able to do modifications
+console.log("object seal add", (objSeal.c = "C")); // won't any errors
+console.log("object seal remove", delete objSeal.b); // false
+console.log("object seal modifications", (objSeal.b = "BB")); // modifications made
+console.log("object seal", objSeal); // { a: "A", b: "BB" }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
