@@ -188,6 +188,88 @@ This repository contains a high-level overview of essential JavaScript concepts 
 
 ---
 
+### 🧩 Set & Map
+
+#### ✅ Set
+
+- A collection of **unique values** (no duplicates allowed)
+- Maintains insertion order
+- Can store **any data type**: primitives, objects, arrays, functions
+- Common Methods:
+  - `add(value)` – Adds a value
+  - `has(value)` – Checks existence
+  - `delete(value)` – Deletes a value
+  - `clear()` – Empties the set
+  - `forEach(callback)` – Iterates the set
+  - `.values()` / `.keys()` / `.entries()` – Iteration helpers (keys and values are same)
+
+#### ✅ Map
+
+- A collection of **key-value pairs**
+- Keys can be **any type** (not just strings like objects)
+- Maintains insertion order
+- Common Methods:
+  - `set(key, value)` – Adds or updates an entry
+  - `get(key)` – Retrieves a value
+  - `has(key)` – Checks if key exists
+  - `delete(key)` – Removes a key-value pair
+  - `clear()` – Clears the map
+  - `.keys()` / `.values()` / `.entries()` – Iterators
+
+---
+
+### 🔤 String Methods (Essential)
+
+- `length` – Get string length
+- `charAt(index)` / `at(index)` – Get character at index
+- `indexOf(substring)` / `lastIndexOf()` – Find position
+- `includes()` – Check presence
+- `startsWith()` / `endsWith()` – Prefix/suffix check
+- `slice()` / `substring()` / `substr()` – Extract parts
+- `toLowerCase()` / `toUpperCase()` – Change case
+- `trim()` / `trimStart()` / `trimEnd()` – Remove spaces
+- `replace()` / `replaceAll()` – Replace parts
+- `split()` – Split into array
+- `repeat()` – Repeat string
+- `padStart()` / `padEnd()` – Pad to length
+
+---
+
+### 🔢 Number Methods (Important)
+
+- `Number.isInteger(value)` – Check for integer
+- `Number.isNaN(value)` – Check for NaN
+- `parseInt(str)` / `parseFloat(str)` – Convert strings to numbers
+- `toFixed(n)` – Fixed decimal places
+- `toString()` – Convert number to string
+- `Math.round()` / `Math.floor()` / `Math.ceil()` – Round numbers
+- `Math.random()` – Generate random number
+- `Math.min()` / `Math.max()` – Get min/max value
+
+---
+
+### 🧱 Object Methods (Essentials)
+
+- `Object.keys(obj)` – Returns array of own property names (keys)
+- `Object.values(obj)` – Returns array of values
+- `Object.entries(obj)` – Returns array of `[key, value]` pairs
+- `Object.assign(target, source)` – Copies values from one or more source objects to a target object
+- `Object.hasOwn(obj, key)` – Checks if the object has the property (alternative to `hasOwnProperty`)
+- `Object.freeze(obj)` – Makes the object immutable
+- `Object.seal(obj)` – Prevents adding/removing properties, but allows editing existing ones
+- `delete obj.key` – Removes a property from object
+- Spread syntax `{ ...obj }` – Creates a shallow copy
+
+---
+
+### 🧠 Logical Value Forcing
+
+- `!!value` – Converts a value to its boolean equivalent
+  - `!!0 → false`
+  - `!!'hello' → true`
+  - `!!undefined → false`
+  - Useful in condition checks or type coercion
+
 ## 📚 Purpose
 
 Use this guide as a revision sheet before JavaScript technical rounds or as a structured reference while learning JavaScript.
