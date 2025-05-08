@@ -262,6 +262,36 @@ This repository contains a high-level overview of essential JavaScript concepts 
 
 ---
 
+### 🔢 Array Methods (Essentials)
+
+- `push(val)` – Add to end
+- `pop()` – Remove from end
+- `shift()` – Remove from start
+- `unshift(val)` – Add to start
+- `concat(arr)` – Combine arrays
+- `slice(start, end)` – Returns shallow copy (does not modify original)
+- `splice(start, deleteCount, ...items)` – Add/remove elements (modifies original)
+- `map(fn)` – Returns new array after applying `fn` to each item
+- `filter(fn)` – Returns new array with items that pass condition
+- `reduce(fn, initial)` – Reduces array to single value
+- `forEach(fn)` – Executes function for each element (no return)
+- `find(fn)` – Returns first element that matches condition
+- `findIndex(fn)` – Returns index of first matching element
+- `some(fn)` – Returns `true` if at least one element matches
+- `every(fn)` – Returns `true` if all elements match
+- `includes(val)` – Checks if value is in array
+- `indexOf(val)` – Returns index of first match (or -1)
+- `lastIndexOf(val)` – Index of last match
+- `join(sep)` – Joins elements into string with separator
+- `reverse()` – Reverses array in-place
+- `sort(compareFn)` – Sorts array (can mutate)
+- `flat(depth)` – Flattens nested arrays
+- `flatMap(fn)` – Map + flatten (depth = 1)
+- `toSorted(compareFn)` – Returns new sorted array (non-mutating)
+- `toReversed()` – Returns new reversed array (non-mutating)
+
+---
+
 ### 🧠 Logical Value Forcing
 
 - `!!value` – Converts a value to its boolean equivalent
