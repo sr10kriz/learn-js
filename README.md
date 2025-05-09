@@ -300,6 +300,46 @@ This repository contains a high-level overview of essential JavaScript concepts 
   - `!!undefined → false`
   - Useful in condition checks or type coercion
 
+---
+
+### ✅ JavaScript vs TypeScript
+
+1. Typing:
+
+   - JavaScript: Dynamically typed (types inferred at runtime)
+   - TypeScript: Statically typed (types checked at compile time)
+
+2. Error Detection:
+
+   - JavaScript: Errors are caught at runtime
+   - TypeScript: Errors are caught during compilation
+
+3. Compilation:
+
+   - JavaScript: Runs directly in the browser or Node.js
+   - TypeScript: Needs to be compiled to JavaScript before running
+
+4. Type Definitions:
+
+   - JavaScript: No explicit type definitions for variables or functions
+   - TypeScript: Supports explicit type annotations for variables, parameters, return types, etc.
+
+5. OOP Support:
+
+   - JavaScript: Limited OOP (Object-Oriented Programming) features
+   - TypeScript: Better OOP support using classes, interfaces, access modifiers (public/private/protected)
+
+6. Tooling:
+
+   - JavaScript: Basic tooling support
+   - TypeScript: Rich IDE support (auto-completion, refactoring, type checking)
+
+7. Learning Curve:
+   - JavaScript: Easier to start with
+   - TypeScript: Slightly steeper learning curve but better for large codebases
+
+---
+
 ## 📚 Purpose
 
 Use this guide as a revision sheet before JavaScript technical rounds or as a structured reference while learning JavaScript.
