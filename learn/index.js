@@ -1809,6 +1809,28 @@ console.log("array flat", [1, [2, [3]]].flat(2)); // [1,2,3]
 
 /* - flatMap((ele)) - combines map() and flat() */
 
+/* 32. Js vs Ts 
+    #1 
+      - Js is dynamically typed
+      - Ts is statically typed
+
+    #2 
+      - Js errors/exceptions will be deducted at runtime
+      - TS errors/exceptions are caught at compile time (before running)
+
+    #3 
+      - JS is interpreted by the browser directly
+      - TS must be compiled to JS (TS → JS → Browser)
+
+    #4
+      - In JS, variable types are not explicitly defined
+      - In TS, types are explicitly defined to prevent runtime/compile-time errors
+
+    #5
+      - JS has limited support for OOP concepts
+      - TS supports better OOP using interfaces, classes, and access modifiers
+*/
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /* train some logics section */
