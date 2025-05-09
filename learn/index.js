@@ -1831,6 +1831,8 @@ console.log("array flat", [1, [2, [3]]].flat(2)); // [1,2,3]
       - TS supports better OOP using interfaces, classes, and access modifiers
 */
 
+/* WRAP JS */
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /* train some logics section */
