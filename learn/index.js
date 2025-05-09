@@ -769,14 +769,49 @@ console.log("dynamicObj", dynamicObj);
 /* let mnb = {}; // the javascript engine take like this let mnb = new Object(); this method is kind of a Constructor Functions */
 
 /* In javascript few built-in Constructors are there */
-new String(); /* for creating Strings */
-/* instead of using this we use string literals like => '',"",`` by using this simple & cleaner than using Constructor. */
+new String(); /* used to create string object (not a primitive string) */
+let newString = new String("hello");
+console.log("new String", newString); // object
+console.log("new String typeof", typeof newString); // object
+console.log("new String valueOf", newString.valueOf()); // hello
 
-new Boolean(); /* either true or false */
+new Boolean(); /* used to create boolean object (not a primitive boolean) */
+let newBoolean = new Boolean(false);
+console.log("new Boolean", newBoolean); // object
+console.log("new Boolean typeof", typeof newBoolean); // object
+console.log("new Boolean valueOf", newBoolean.valueOf()); // false
+/* 
+  if (new Boolean(false)) { // in this it returns true since new Boolean creates truthy boolean object eventhough we pass false as value
 
-new Number(); /* 1,2,3... */
+  }
+*/
 
-new Date(); /* returns current date as Date Object */
+new Number(); /* used to create number object (not a primitive number/int) */
+let newNumber = 10;
+console.log("new Number", newNumber); // object
+console.log("new Number typeof", typeof newNumber); // object
+console.log("new Number valueOf", newNumber.valueOf()); // 10
+
+new Date(); /* used to create a date object that holds a current date and time */
+let newDate = new Date();
+console.log("new Date", newDate); // Fri May 09 2025 08:49:51 GMT+0530 (India Standard Time)
+
+let newDateSp = new Date(2001, 1, 12, 1, 30, 10);
+console.log("new DateSp", newDateSp); // Mon Feb 12 2001 01:30:10 GMT+0530 (India Standard Time)
+
+/* # common methods of new Date obj
+    - getFullYear() - return 4-digit year i.e 2001
+    - getMonth() - return month (0-11), 0 - jan, 11 - dec
+    - getDate() - return day of the month (1-31)
+    - getDay() - return day of the week (0-6), 0 - sunday, 6 - saturday
+    - getHours() 
+    - getMinutes()
+    - getSeconds()
+    - getTime()
+    - toISOString()
+    - toDateString()
+    - toLocalString()
+*/
 
 /* 9. Spread Operator - 
       - the spread operator expands iterables like (arrays, objects, strings) into individual elements 
